@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" action="result.html">
+    {% csrf_token %}
+    <hr>
+	<div>1.头痛
+	<div>
+		<input type="radio" name="rdoSCL90_1" value="1" id="rdoSCL90_1_1"><label for="rdoSCL90_1_1">从无、</label>
+		<input type="radio" name="rdoSCL90_1" value="2" id="rdoSCL90_1_2"><label for="rdoSCL90_1_2">很轻、</label>
+		<input type="radio" name="rdoSCL90_1" value="3" id="rdoSCL90_1_3"><label for="rdoSCL90_1_3">中等、</label>
+		<input type="radio" name="rdoSCL90_1" value="4" id="rdoSCL90_1_4"><label for="rdoSCL90_1_4">偏重、</label>
+		<input type="radio" name="rdoSCL90_1" value="5" id="rdoSCL90_1_5"><label for="rdoSCL90_1_5">严重</label>
+	</div>
+
+
+	<hr>
+	<div>2.神经过敏，心中不踏实
+	<div>
+		<input type="radio" name="rdoSCL90_2" value="1" id="rdoSCL90_2_1"><label for="rdoSCL90_2_1">从无、</label>
+		<input type="radio" name="rdoSCL90_2" value="2" id="rdoSCL90_2_2"><label for="rdoSCL90_2_2">很轻、</label>
+		<input type="radio" name="rdoSCL90_2" value="3" id="rdoSCL90_2_3"><label for="rdoSCL90_2_3">中等、</label>
+		<input type="radio" name="rdoSCL90_2" value="4" id="rdoSCL90_2_4"><label for="rdoSCL90_2_4">偏重、</label>
+		<input type="radio" name="rdoSCL90_2" value="5" id="rdoSCL90_2_5"><label for="rdoSCL90_2_5">严重</label>
+	</div>
+
+
+	<hr>
+	<fo>3.头脑中有不必要的想法或字句盘旋
+	<div>
+		<input type="radio" name="rdoSCL90_3" value="1" id="rdoSCL90_3_1"><label for="rdoSCL90_3_1">从无、</label>
+		<input type="radio" name="rdoSCL90_3" value="2" id="rdoSCL90_3_2"><label for="rdoSCL90_3_2">很轻、</label>
+		<input type="radio" name="rdoSCL90_3" value="3" id="rdoSCL90_3_3"><label for="rdoSCL90_3_3">中等、</label>
+		<input type="radio" name="rdoSCL90_3" value="4" id="rdoSCL90_3_4"><label for="rdoSCL90_3_4">偏重、</label>
+		<input type="radio" name="rdoSCL90_3" value="5" id="rdoSCL90_3_5"><label for="rdoSCL90_3_5">严重</label>
+	</div>
+        <td align="center" colspan="2">
+            <input type="submit" value="提交">
+        </td>
+</form>
+{#<form method="post">#}
+{#    {% csrf_token %}#}
+{#    <table>#}
+{#        <tr>#}
+{#            <td align="right">学号/工号:</td>#}
+{#            <td><input type="text" name="userid"></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <td align="right">密&nbsp;码:</td>#}
+{#            <td><input type="password" name="password"></td>#}
+{#        </tr>#}
+{#        <td align="center" colspan="2">#}
+{#            <input type="submit" value="提交">#}
+{#        </td>#}
+{#    </table>#}
+{#    <a href="/result/">点击跳转</a>#}
+{#</form>#}
+
+</body>
+</html>
