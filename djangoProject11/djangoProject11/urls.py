@@ -19,19 +19,26 @@ from login import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    # 首页
     url(r'^index/', views.index),
     url(r'^login/', views.login),
     url(r'^register/', views.register),
     url(r'^logout/', views.logout),
-    url(r'^base/',views.base),
+    # 健康问卷
     url(r'^questionnaire/',views.questionnaire),
-    url(r'^normal/',views.normal),
+    url(r'^question/', views.question),
+    url(r'^result/', views.result),
+    url(r'^questionresult/', views.questionresult),
+    # 内科检查
     url(r'^internal/',views.internal),
+    # 外科
     url(r'^surgery/',views.surgery),
-    url(r'^question/',views.question),
-    url(r'^result/',views.result),
-    url(r'^test/',views.test),
+    # 一般检查
+    url(r'^normal/', views.normal),
+    # 个人中心
     url(r'^person/',views.person),
+    # 健康评价
     url(r'^comment/',views.comment),
-    url(r'^questionresult/',views.questionresult),
+    url(r'^base/',views.base),
+    url(r'^test/', views.test),
 ]

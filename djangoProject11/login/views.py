@@ -97,9 +97,10 @@ def questionnaire(request):
 
 # @login_required
 def normal(request):
-    username = request.session['user_name']
-    normal = models.Normal.objects.get(name=username)
-    return render(request,'health/normal.html',{'normal':normal})
+    # username = request.session['user_name']
+    # normal = models.Normal.objects.get(name=username)
+    # return render(request,'health/normal.html',{'normal':normal})
+    return render(request,'health/normal.html')
 
 # @login_required
 def internal(request):
@@ -214,8 +215,8 @@ def question(request):
                         ,item72=id72,item73=id73,item74=id74,item75=id75,item76=id76,item77=id77,item78=id78,item79=id79,item80=id80,item81=id81,item82=id82,item83=id83
                         ,item84=id84,item85=id85,item86=id86,item87=id87,item88=id88,item89=id89,item90=id90)
         item1.save()
-        return render(request,'health/result.html')
-
+        # return render(request,'health/result.html')
+        return redirect('result/')
 # @login_required
 def result(request):
     return render(request,'health/result.html')
