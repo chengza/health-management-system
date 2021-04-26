@@ -3,7 +3,7 @@
 from django.shortcuts import render,redirect
 from . import models
 from .forms import UserForm,RegisterForm
-from models import User,Message,Normal
+from .models import User,Message,Normal
 from django.contrib.auth.decorators import login_required
 
 
@@ -26,7 +26,7 @@ def login(request):
                     request.session['is_login'] = True
                     request.session['user_id'] = user.id
                     request.session['user_name'] = user.name
-                    return redirect('/base')
+                    return redirect('/index')
                 else:
                     message = "密码不正确！"
             except:

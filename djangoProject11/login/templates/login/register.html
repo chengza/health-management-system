@@ -1,11 +1,8 @@
 {% extends 'base.html' %}
 
-{% block title %}注册{% endblock %}
 {% block content %}
-    <div class="container">
-        <div class="col-md-4 col-md-offset-4">
+    <div class="container col-md-4 col-md-offset-4" style="margin-top:80px">
           <form class='form-register' action="/register/" method="post">
-
               {% if message %}
                   <div class="alert alert-warning">{{ message }}</div>
               {% endif %}
@@ -14,27 +11,22 @@
 
               <h2 class="text-center">欢迎注册</h2>
               <div class="form-group">
-                  <h5>用户名</h5>
                   {{ register_form.username.label_tag }}
                   {{ register_form.username}}
               </div>
               <div class="form-group">
-                  <h5>密码</h5>
                   {{ register_form.password1.label_tag }}
                   {{ register_form.password1 }}
               </div>
               <div class="form-group">
-                  <h5>确认密码</h5>
                   {{ register_form.password2.label_tag }}
                   {{ register_form.password2 }}
               </div>
               <div class="form-group">
-                  <h5>邮箱</h5>
                   {{ register_form.email.label_tag }}
                   {{ register_form.email }}
               </div>
               <div class="form-group">
-                  <h5>性别</h5>
                   {{ register_form.sex.label_tag }}
                   {{ register_form.sex }}
               </div>
@@ -44,10 +36,9 @@
                   {{ register_form.captcha }}
               </div>
 
-              <button type="reset" class="btn btn-default pull-left">重置</button>
-              <button type="submit" class="btn btn-primary pull-right">提交</button>
+              <button type="reset" class="btn btn-primary pull-left">重置</button>
+              <button type="submit" class="btn btn-primary pull-right" style="float:right">提交</button>
 
           </form>
-        </div>
-    </div> <!-- /container -->
+    </div>
 {% endblock %}
