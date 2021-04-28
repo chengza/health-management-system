@@ -1,18 +1,19 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render,redirect
+from django.shortcuts import render, redirect
 from . import models
-from .forms import UserForm,RegisterForm
-from .models import User,Message,Normal
+from .forms import UserForm, RegisterForm
+from .models import User, Message, Normal
 from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    return render(request,'login/index.html')
+    return render(request, 'index/index.html')
+
 
 def login(request):
-    if request.session.get('is_login',None):
-        return redirect('/index')
+    # if request.session.get('is_login', None):
+    #     return redirect('/index')
 
     if request.method == "POST":
         login_form = UserForm(request.POST)
@@ -36,10 +37,11 @@ def login(request):
     login_form = UserForm()
     return render(request, 'login/login.html', locals())
 
+
 def register(request):
-    if request.session.get('is_login', None):
-        # 登录状态不允许注册。你可以修改这条原则！
-        return redirect("/index/")
+    # if request.session.get('is_login', None):
+    #     # 登录状态不允许注册。你可以修改这条原则！
+    #     return redirect("/index/")
     if request.method == "POST":
         register_form = RegisterForm(request.POST)
         message = "请检查填写的内容！"
@@ -74,6 +76,7 @@ def register(request):
     register_form = RegisterForm()
     return render(request, 'login/register.html', locals())
 
+
 def logout(request):
     if not request.session.get('is_login', None):
         # 如果本来就未登录，也就没有登出一说
@@ -85,35 +88,41 @@ def logout(request):
     # del request.session['user_name']
     return redirect("/index/")
 
+
 def base(request):
     pass
-    return render(request,'health/base.html')
+    return render(request, 'health/base.html')
+
 
 # @login_required
 def questionnaire(request):
     # print 1
-    return render(request,'health/questionnaire.html')
+    return render(request, 'health/questionnaire.html')
     # return render(request,'health/questionnaire.html')
+
 
 # @login_required
 def normal(request):
     # username = request.session['user_name']
     # normal = models.Normal.objects.get(name=username)
     # return render(request,'health/normal.html',{'normal':normal})
-    return render(request,'health/normal.html')
+    return render(request, 'health/normal.html')
+
 
 # @login_required
 def internal(request):
-    return render(request,'health/internal.html')
+    return render(request, 'health/internal.html')
+
 
 # @login_required
 def surgery(request):
-    return render(request,'health/surgery.html')
+    return render(request, 'health/surgery.html')
+
 
 # @login_required
 def question(request):
     if request.method == 'GET':
-        return render(request,'health/question.html')
+        return render(request, 'health/question.html')
     else:
         id1 = request.POST.get('rdoSCL90_1')
         id2 = request.POST.get('rdoSCL90_2')
@@ -206,29 +215,38 @@ def question(request):
         id89 = request.POST.get('rdoSCL90_89')
         id90 = request.POST.get('rdoSCL90_90')
         name = request.POST.get('name')
-        item1 = Message(name=name,item1=id1,item2=id2,item3=id3,item4=id4,item5=id5,item6=id6,item7=id7,item8=id8,item9=id9,item10=id10,item11=id11
-                        ,item12=id12,item13=id13,item14=id14,item15=id15,item16=id16,item17=id17,item18=id18,item19=id19,item20=id20,item21=id21,item22=id22,item23=id23
-                        ,item24=id24,item25=id25,item26=id26,item27=id27,item28=id28,item29=id29,item30=id30,item31=id31,item32=id32,item33=id33,item34=id34,item35=id35
-                        ,item36=id36,item37=id37,item38=id38,item39=id39,item40=id40,item41=id41,item42=id42,item43=id43,item44=id44,item45=id45,item46=id46,item47=id47
-                        ,item48=id48,item49=id49,item50=id50,item51=id51,item52=id52,item53=id53,item54=id54,item55=id55,item56=id56,item57=id57,item58=id58,item59=id59
-                        ,item60=id60,item61=id61,item62=id62,item63=id63,item64=id64,item65=id65,item66=id66,item67=id67,item68=id68,item69=id69,item70=id70,item71=id71
-                        ,item72=id72,item73=id73,item74=id74,item75=id75,item76=id76,item77=id77,item78=id78,item79=id79,item80=id80,item81=id81,item82=id82,item83=id83
-                        ,item84=id84,item85=id85,item86=id86,item87=id87,item88=id88,item89=id89,item90=id90)
+        item1 = Message(name=name, item1=id1, item2=id2, item3=id3, item4=id4, item5=id5, item6=id6, item7=id7,
+                        item8=id8, item9=id9, item10=id10, item11=id11
+                        , item12=id12, item13=id13, item14=id14, item15=id15, item16=id16, item17=id17, item18=id18,
+                        item19=id19, item20=id20, item21=id21, item22=id22, item23=id23
+                        , item24=id24, item25=id25, item26=id26, item27=id27, item28=id28, item29=id29, item30=id30,
+                        item31=id31, item32=id32, item33=id33, item34=id34, item35=id35
+                        , item36=id36, item37=id37, item38=id38, item39=id39, item40=id40, item41=id41, item42=id42,
+                        item43=id43, item44=id44, item45=id45, item46=id46, item47=id47
+                        , item48=id48, item49=id49, item50=id50, item51=id51, item52=id52, item53=id53, item54=id54,
+                        item55=id55, item56=id56, item57=id57, item58=id58, item59=id59
+                        , item60=id60, item61=id61, item62=id62, item63=id63, item64=id64, item65=id65, item66=id66,
+                        item67=id67, item68=id68, item69=id69, item70=id70, item71=id71
+                        , item72=id72, item73=id73, item74=id74, item75=id75, item76=id76, item77=id77, item78=id78,
+                        item79=id79, item80=id80, item81=id81, item82=id82, item83=id83
+                        , item84=id84, item85=id85, item86=id86, item87=id87, item88=id88, item89=id89, item90=id90)
         item1.save()
         # return render(request,'health/result.html')
         return redirect('result/')
+
+
 # @login_required
 def result(request):
-    return render(request,'health/result.html')
+    return render(request, 'health/result.html')
 
 
 def test(request):
-    return render(request,'health/result.html')
+    return render(request, 'health/result.html')
 
 
 def person(request):
     if request.method == "GET":
-        return render(request,'health/person.html')
+        return render(request, 'health/person.html')
     else:
         name = request.POST.get('name')
         height = request.POST.get('height')
@@ -236,13 +254,14 @@ def person(request):
         rvision = request.POST.get('right_vision')
         lvision = request.POST.get('left_vision')
         pulmonary = request.POST.get('pulmonary')
-        item = Normal(name=name,height=height,weight=weight,right_vision=rvision,left_vision=lvision,pulmonary=pulmonary)
+        item = Normal(name=name, height=height, weight=weight, right_vision=rvision, left_vision=lvision,
+                      pulmonary=pulmonary)
         item.save()
-        return render(request,'health/result.html')
+        return render(request, 'health/result.html')
 
 
 def comment(request):
-    return render(request,'health/comment.html')
+    return render(request, 'health/comment.html')
 
 
 def questionresult(request):
