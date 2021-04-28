@@ -11,6 +11,10 @@ def index(request):
     return render(request, 'index/index.html')
 
 
+def knowledge(request):
+    return render(request, './knowledge.html')
+
+
 def login(request):
     # if request.session.get('is_login', None):
     #     return redirect('/index')
