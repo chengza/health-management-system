@@ -1,45 +1,40 @@
 {% extends 'base.html' %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>个人中心</title>
-</head>
+
 {% block content %}
-<body>
+    <body>
     <form action="result.html" method="post">
         {% csrf_token %}
-        <h1>请上传您的健康信息!</h1>
+        <h1>请填写您的基本信息!</h1>
         <h2>基本信息：</h2>
-            <tr>
-                <td align="right">学号:</td>
-                <td><input type="text" name="name"></td>
-            </tr>
-            <br>
-            <tr>
-                <td align="right">身高:</td>
-                <td><input type="text" name="height"></td>
-            </tr>
-            <br>
-            <tr>
-                <td align="right">体重:</td>
-                <td><input type="text" name="weight"></td>
-            </tr>
-            <br>
-            <tr>
-                <td align="right">左眼视力:</td>
-                <td><input type="text" name="left_vision"></td>
-            </tr>
-            <br>
-            <tr>
-                <td align="right">右眼视力:</td>
-                <td><input type="text" name="right_vision"></td>
-            </tr>
-            <br>
-            <tr>
-                <td align="right">肺活量:</td>
-                <td><input type="text" name="pulmonary"></td>
-            </tr>
+        <tr>
+            <td align="right">学号:</td>
+            <td><input type="text" name="name"></td>
+        </tr>
+        <br>
+        <tr>
+            <td align="right">身高:</td>
+            <td><input type="text" name="height"></td>
+        </tr>
+        <br>
+        <tr>
+            <td align="right">体重:</td>
+            <td><input type="text" name="weight"></td>
+        </tr>
+        <br>
+        <tr>
+            <td align="right">左眼视力:</td>
+            <td><input type="text" name="left_vision"></td>
+        </tr>
+        <br>
+        <tr>
+            <td align="right">右眼视力:</td>
+            <td><input type="text" name="right_vision"></td>
+        </tr>
+        <br>
+        <tr>
+            <td align="right">肺活量:</td>
+            <td><input type="text" name="pulmonary"></td>
+        </tr>
         <h2>内科信息</h2>
         <br>
         <br>
@@ -47,8 +42,8 @@
         <br>
         <h2>外科信息</h2>
         <input type="submit" value="提交">
-        </form>
+    </form>
 
-</body>
+    </body>
 {% endblock %}
 </html>

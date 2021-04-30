@@ -17,8 +17,14 @@ from django.conf.urls import url
 from django.contrib import admin
 from login import views
 
+
+
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    # 后台
+    # url(r'^control/', control.site.urls),
+    url(r'^control/', views.control),
+    url(r'^authstr/', views.authstr),
+    url(r'^launch/', views.launch),
     # 首页
     url(r'^index/', views.index),
     url(r'^knowledge/', views.knowledge),

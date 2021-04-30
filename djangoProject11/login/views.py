@@ -7,12 +7,22 @@ from .models import User, Message, Normal
 from django.contrib.auth.decorators import login_required
 
 
+def control(request):
+    return render(request, 'control/index.html')
+
+def authstr(request):
+    return render(request, 'control/authstr.html')
+
+def launch(request):
+    return render(request, 'control/launch.html')
+
+
 def index(request):
     return render(request, 'index/index.html')
 
 
 def knowledge(request):
-    return render(request, './knowledge.html')
+    return render(request, './knowledge/knowledge.html')
 
 
 def login(request):
