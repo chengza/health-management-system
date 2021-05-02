@@ -6,17 +6,63 @@ from .forms import UserForm, RegisterForm
 from .models import User, Message, Normal
 from django.contrib.auth.decorators import login_required
 
-
+# 后台路由
 def control(request):
     return render(request, 'control/index.html')
 
 def authstr(request):
     return render(request, 'control/authstr.html')
 
+def detailed_information(request):
+    return render(request, 'control/detailed_information.html')
+
 def launch(request):
     return render(request, 'control/launch.html')
 
+def project_management(request):
+    return render(request, 'control/project_management.html')
 
+def project_release(request):
+    return render(request, 'control/project_release.html')
+
+def project_edit(request):
+    return render(request, 'control/project_edit.html')
+
+def project_audit(request):
+    return render(request, 'control/project_audit.html')
+
+def project_approval(request):
+    return render(request, 'control/project_approval.html')
+
+def data_audit(request):
+    return render(request, 'control/data_audit.html')
+
+def trading_center(request):
+    return render(request, 'control/trading_center.html')
+
+def add_trading_center(request):
+    return render(request, 'control/add_trading_center.html')
+
+def userlist(request):
+    return render(request, 'control/userlist.html')
+
+def rolelist(request):
+    return render(request, 'control/rolelist.html')
+
+def information_management(request):
+    return render(request, 'control/information_management.html')
+
+def news_information(request):
+    return render(request, 'control/news_information.html')
+
+def adsense(request):
+    return render(request, 'control/adsense.html')
+
+
+def friendship_link(request):
+    return render(request, 'control/friendship_link.html')
+
+# 前台路由
 def index(request):
     return render(request, 'index/index.html')
 

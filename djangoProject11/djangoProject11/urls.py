@@ -23,8 +23,28 @@ urlpatterns = [
     # 后台
     # url(r'^control/', control.site.urls),
     url(r'^control/', views.control),
+    # 工作台
     url(r'^authstr/', views.authstr),
+        url(r'^detailed_information/', views.detailed_information),
     url(r'^launch/', views.launch),
+    # 竞拍管理
+    url(r'^project_management/', views.project_management),
+        url(r'^project_release/', views.project_release),
+        url(r'^project_edit/', views.project_edit),
+    url(r'^project_audit/', views.project_audit),
+        url(r'^project_approval/', views.project_approval),
+    url(r'^data_audit/', views.data_audit),
+    # 交易中心管理
+    url(r'^trading_center/', views.trading_center),
+        # 新增
+        url(r'^add_trading_center/', views.add_trading_center),
+    # 用户管理
+    url(r'^userlist/', views.userlist),
+    url(r'^rolelist/', views.rolelist),
+    url(r'^information_management/', views.information_management),
+    url(r'^news_information/', views.news_information),
+    url(r'^adsense/', views.adsense),
+    url(r'^friendship_link/', views.friendship_link),
     # 首页
     url(r'^index/', views.index),
     url(r'^knowledge/', views.knowledge),
