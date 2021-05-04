@@ -8,39 +8,19 @@ from login import views
 urlpatterns = [
     # 后台
     # url(r'^control/', control.site.urls),
-    url(r'^control/', views.control),
-    # 工作台
-    url(r'^authstr/', views.authstr),
-        url(r'^detailed_information/', views.detailed_information),
-    url(r'^launch/', views.launch),
-    # 竞拍管理
-    url(r'^project_management/', views.project_management),
-        url(r'^project_release/', views.project_release),
-        url(r'^project_edit/', views.project_edit),
-    url(r'^project_audit/', views.project_audit),
-        url(r'^project_approval/', views.project_approval),
-    url(r'^data_audit/', views.data_audit),
-    # 交易中心管理
-    url(r'^trading_center/', views.trading_center),
-        # 新增
-        url(r'^add_trading_center/', views.add_trading_center),
-    # 用户管理
-    url(r'^userlist/', views.userlist),
-        url(r'^adduser/', views.adduser),
-    # 角色管理
-    url(r'^rolelist/', views.rolelist),
-        url(r'^add_role/', views.add_role),
-    # 信息管理
-    url(r'^information_management/', views.information_management),
-    # 新闻资讯
-    url(r'^news_information/', views.news_information),
-        url(r'^add_news_information/', views.add_news_information),
-    # 广告管理
-    url(r'^adsense/', views.adsense),
-        url(r'^add_adsense/', views.add_adsense),
-    # 友情链接
-    url(r'^friendship_link/', views.friendship_link),
-        url(r'^add_friendship_link/', views.add_friendship_link),
+    url(r'^control/', views.control),  # 后台路由
+    url(r'^userlist/', views.userlist),  # 用户管理
+    url(r'^adduser/', views.adduser),  # 新增用户
+    url(r'^rolelist/', views.rolelist),  # 管理员管理
+    url(r'^add_role/', views.add_role),  # 新增管理员
+    url(r'^Base_info/', views.control_Base_info),  # 基本信息
+    url(r'^Normal/', views.control_Normal),  # 一般检查
+    url(r'^Internal/', views.control_Internal),  # 内科检查
+    url(r'^Surgical/', views.control_Surgical),  # 外科检查
+
+    url(r'^news_information/', views.news_information),  # 新闻资讯
+    url(r'^add_news_information/', views.add_news_information),  # 增加新闻
+
     # 首页
     url(r'^index/', views.index),
     url(r'^knowledge/', views.knowledge),

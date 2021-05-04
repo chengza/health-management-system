@@ -13,72 +13,38 @@ from django.db import connection
 # 后台路由
 def control(request):
     return render(request, 'control/index.html')
-# 待审核页面
-def authstr(request):
-    return render(request, 'control/authstr.html')
-# 审核页面
-def detailed_information(request):
-    return render(request, 'control/detailed_information.html')
-# 我发起的页面
-def launch(request):
-    return render(request, 'control/launch.html')
-# 项目管理
-def project_management(request):
-    return render(request, 'control/project_management.html')
-#
-def project_release(request):
-    return render(request, 'control/project_release.html')
-
-def project_edit(request):
-    return render(request, 'control/project_edit.html')
-
-def project_audit(request):
-    return render(request, 'control/project_audit.html')
-
-def project_approval(request):
-    return render(request, 'control/project_approval.html')
-
-def data_audit(request):
-    return render(request, 'control/data_audit.html')
-# 交易中心页面
-def trading_center(request):
-    return render(request, 'control/trading_center.html')
-# 新增加交易中心页面
-def add_trading_center(request):
-    return render(request, 'control/add_trading_center.html')
 # 用户列表页面
 def userlist(request):
     return render(request, 'control/userlist.html')
 # 增加用户页面
 def adduser(request):
     return render(request, 'control/adduser.html')
-# 角色管理页面
+# 管理员管理页面
 def rolelist(request):
     return render(request, 'control/rolelist.html')
-# 增加角色页面
+# 增加管理员页面
 def add_role(request):
     return render(request, 'control/add_role.html')
-# 信息管理页面
-def information_management(request):
-    return render(request, 'control/information_management.html')
+# 基本信息页面
+def control_Base_info(request):
+    return render(request, 'control/Base_info.html')
+# 一般检查
+def control_Normal(request):
+    return render(request, 'control/Normal.html')
+# 内科检查
+def control_Internal(request):
+    return render(request, 'control/Normal.html')
+# 外科检查
+def control_Surgical(request):
+    return render(request, 'control/Normal.html')
+
 # 新闻管理页面
 def news_information(request):
     return render(request, 'control/news_information.html')
 # 增加新闻页面
 def add_news_information(request):
     return render(request, 'control/add_news_information.html')
-# 广告管理页面
-def adsense(request):
-    return render(request, 'control/adsense.html')
-# 增加广告
-def add_adsense(request):
-    return render(request, 'control/add_adsense.html')
-# 友情链接页面
-def friendship_link(request):
-    return render(request, 'control/friendship_link.html')
-# 增加链接
-def add_friendship_link(request):
-    return render(request, 'control/add_friendship_link.html')
+
 
 # 前台路由
 def index(request):
@@ -177,7 +143,7 @@ def normal(request):
     username = request.session['user_name']
     normal = models.Normal.objects.filter(name=username)
     return render(request,'health/normal.html',{'normal':normal})
-    # return render(request, 'health/normal.html')
+    # return render(request, 'health/Normal.html')
 
 
 def internal(request):
