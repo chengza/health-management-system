@@ -62,6 +62,8 @@ urlpatterns = [
     url(r'^person/',views.person),
     # 健康评价
     url(r'^comment/',views.comment),
-    url(r'^base/',views.base),
-    url(r'^test/', views.test),
+
+
+    # url(r'^base/',views.base),
+    # url(r'^test/', views.test),
 ]
