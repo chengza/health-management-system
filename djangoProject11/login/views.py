@@ -6,7 +6,12 @@ from .forms import UserForm, RegisterForm
 from .models import User, Message, Normal
 from django.contrib.auth.decorators import login_required
 
+
 # 后台路由
+
+from django.db import connection
+
+
 def control(request):
     return render(request, 'control/index.html')
 
@@ -46,11 +51,20 @@ def add_trading_center(request):
 def userlist(request):
     return render(request, 'control/userlist.html')
 
+def adduser(request):
+    return render(request, 'control/adduser.html')
+
 def rolelist(request):
     return render(request, 'control/rolelist.html')
 
+def add_role(request):
+    return render(request, 'control/add_role.html')
+
 def information_management(request):
     return render(request, 'control/information_management.html')
+
+def add_news_information(request):
+    return render(request, 'control/add_news_information.html')
 
 def news_information(request):
     return render(request, 'control/news_information.html')
@@ -58,9 +72,14 @@ def news_information(request):
 def adsense(request):
     return render(request, 'control/adsense.html')
 
+def add_adsense(request):
+    return render(request, 'control/add_adsense.html')
 
 def friendship_link(request):
     return render(request, 'control/friendship_link.html')
+
+def add_friendship_link(request):
+    return render(request, 'control/add_friendship_link.html')
 
 # 前台路由
 def index(request):
@@ -163,10 +182,10 @@ def questionnaire(request):
 
 # @login_required
 def normal(request):
-    # username = request.session['user_name']
-    # normal = models.Normal.objects.get(name=username)
-    # return render(request,'health/normal.html',{'normal':normal})
-    return render(request, 'health/normal.html')
+    username = request.session['user_name']
+    normal = models.Normal.objects.filter(name=username)
+    return render(request,'health/normal.html',{'normal':normal})
+    # return render(request, 'health/normal.html')
 
 
 # @login_required
@@ -177,7 +196,6 @@ def internal(request):
 # @login_required
 def surgery(request):
     return render(request, 'health/surgery.html')
-
 
 # @login_required
 def question(request):
@@ -291,8 +309,8 @@ def question(request):
                         item79=id79, item80=id80, item81=id81, item82=id82, item83=id83
                         , item84=id84, item85=id85, item86=id86, item87=id87, item88=id88, item89=id89, item90=id90)
         item1.save()
-        # return render(request,'health/result.html')
-        return redirect('result/')
+        return render(request,'health/questionresult.html')
+
 
 
 # @login_required
@@ -325,6 +343,29 @@ def comment(request):
 
 
 def questionresult(request):
-    username = request.session['user_name']
-    message = models.Message.objects.get(name=username)
-    return render(request, 'health/questionresult.html', {'message': message})
+    # username = request.session['user_name']
+    # message = models.Message.objects.get(name=username)
+    # return render(request, 'health/questionresult.html',{'message':message})
+    cursor = connection.cursor()
+    cursor.execute("select (item1+item4+item12+item27+item40+item42+item48+item49+item52+item53+item56+item58)/12 from login_message")
+    F1 = cursor.fetchone()
+    cursor.execute("select (item3+item9+item10+item28+item38+item45+item46+item51+item55+item65)/10 from login_message")
+    F2 = cursor.fetchone()
+    cursor.execute("select (item6+item21+item34+item36+item37+item41+item61+item69+item73)/9 from login_message")
+    F3 = cursor.fetchone()
+    cursor.execute("select (item5+item14+item15+item20+item22+item26+item29+item30+item31+item32+item54+item71+item79)/13 from login_message")
+    F4 = cursor.fetchone()
+    cursor.execute("select (item2+item17+item23+item33+item39+item57+item72+item78+item80+item86)/10 from login_message")
+    F5 = cursor.fetchone()
+    cursor.execute("select (item11+item24+item63+item67+item74+item81)/6 from login_message")
+    F6 = cursor.fetchone()
+    cursor.execute("select (item13+item25+item47+item50+item70+item75+item82)/7 from login_message")
+    F7 = cursor.fetchone()
+    cursor.execute("select (item8+item18+item43+item68+item76+item83)/6 from login_message")
+    F8 = cursor.fetchone()
+    cursor.execute("select (item7+item16+item35+item62+item77+item84+item85+item87+item88+item90)/10 from login_message")
+    F9 = cursor.fetchone()
+    cursor.execute("select (item19+item44+item59+item60+item64+item66+item89)/7 from login_message")
+    F10 = cursor.fetchone()
+    return render(request,'health/questionresult.html',
+                  {'F1':F1,'F2':F2,'F3':F3,'F4':F4,'F5':F5,'F6':F6,'F7':F7,'F8':F8,'F9':F9,'F10':F10})

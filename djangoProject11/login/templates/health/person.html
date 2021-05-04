@@ -1,49 +1,69 @@
-{% extends 'base.html' %}
+﻿{% include 'base.html' %}
+<!DOCTYPE html>
 
-{% block content %}
-    <body>
-    <form action="result.html" method="post">
-        {% csrf_token %}
-        <h1>请填写您的基本信息!</h1>
-        <h2>基本信息：</h2>
-        <tr>
-            <td align="right">学号:</td>
-            <td><input type="text" name="name"></td>
-        </tr>
-        <br>
-        <tr>
-            <td align="right">身高:</td>
-            <td><input type="text" name="height"></td>
-        </tr>
-        <br>
-        <tr>
-            <td align="right">体重:</td>
-            <td><input type="text" name="weight"></td>
-        </tr>
-        <br>
-        <tr>
-            <td align="right">左眼视力:</td>
-            <td><input type="text" name="left_vision"></td>
-        </tr>
-        <br>
-        <tr>
-            <td align="right">右眼视力:</td>
-            <td><input type="text" name="right_vision"></td>
-        </tr>
-        <br>
-        <tr>
-            <td align="right">肺活量:</td>
-            <td><input type="text" name="pulmonary"></td>
-        </tr>
-        <h2>内科信息</h2>
-        <br>
-        <br>
-        <br>
-        <br>
-        <h2>外科信息</h2>
-        <input type="submit" value="提交">
-    </form>
+<html lang="en">
 
-    </body>
-{% endblock %}
+<head>
+    <meta charset="utf-8">
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="static/person/css/register.css">
+</head>
+
+<body>
+
+<div class="rg_layout">
+    <div class="rg_left">
+        <p class="p_reg">个人信息填写</p>
+        <p class="p_en">Personal information</p>
+    </div>
+
+    <div class="rg_center">
+        <div class="re_form">
+
+            <form action="#" method="post">
+                <table>
+                     <tr>
+                        <td class="td_left">性别</td>
+                        <td class="td_right">
+                            <input type="radio" name="gender" value="male">男
+                            <input type="radio" name="gender" value="female">女
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="username">用户名</label></td>
+                        <td class="td_right"><input type="text" name="username" id="username" placeholder="请输入账号"></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="password">密码</label></td>
+                        <td class="td_right"><input type="password" name="name" id="password" placeholder="请输入密码"></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="email">Email</label></td>
+                        <td class="td_right"><input type="email" name=email id="email" placeholder="请输入Email"></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="name">姓名</label></td>
+                        <td class="td_right"><input type="text" name="name" id="name" placeholder="请输入真实姓名"></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="phone">手机号</label></td>
+                        <td class="td_right"><input type="text" name="phone" id="phone" placeholder="请输入您的手机号"></td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="birthday">出生日期</label></td>
+                        <td class="td_right"><input type="date" name="birthday" id="birthday"></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="center"><input type="submit" id="btn_sub" value="提交"></td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
 </html>
+

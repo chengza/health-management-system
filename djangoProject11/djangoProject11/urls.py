@@ -1,18 +1,4 @@
-"""djangoProject11 URL Configuration
-
-The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/1.11/topics/http/urls/
-Examples:
-Function views
-    1. Add an import:  from my_app import views
-    2. Add a URL to urlpatterns:  url(r'^$', views.home, name='home')
-Class-based views
-    1. Add an import:  from other_app.views import Home
-    2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
-"""
+# -*- coding: utf-8 -*-
 from django.conf.urls import url
 from django.contrib import admin
 from login import views
@@ -40,11 +26,21 @@ urlpatterns = [
         url(r'^add_trading_center/', views.add_trading_center),
     # 用户管理
     url(r'^userlist/', views.userlist),
+        url(r'^adduser/', views.adduser),
+    # 角色管理
     url(r'^rolelist/', views.rolelist),
+        url(r'^add_role/', views.add_role),
+    # 信息管理
     url(r'^information_management/', views.information_management),
+    # 新闻资讯
     url(r'^news_information/', views.news_information),
+        url(r'^add_news_information/', views.add_news_information),
+    # 广告管理
     url(r'^adsense/', views.adsense),
+        url(r'^add_adsense/', views.add_adsense),
+    # 友情链接
     url(r'^friendship_link/', views.friendship_link),
+        url(r'^add_friendship_link/', views.add_friendship_link),
     # 首页
     url(r'^index/', views.index),
     url(r'^knowledge/', views.knowledge),
