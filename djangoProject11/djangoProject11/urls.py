@@ -17,16 +17,18 @@ urlpatterns = [
     url(r'^Normal/', views.control_Normal),  # 一般检查
     url(r'^Internal/', views.control_Internal),  # 内科检查
     url(r'^Surgical/', views.control_Surgical),  # 外科检查
-
-    url(r'^news_information/', views.news_information),  # 新闻资讯
-    url(r'^add_news_information/', views.add_news_information),  # 增加新闻
+    url(r'^internal_new/', views.internal_new),  # 内科新闻
+    url(r'^add_Internal_news/', views.add_Internal_news),  # 增加内科新闻
+    url(r'^surgery_new/', views.surgery_new),  # 外科新闻
+    url(r'^add_surgery_news/', views.add_surgery_news),  # 增加外科新闻
 
     # 首页
     url(r'^index/', views.index),
-    url(r'^knowledge/', views.knowledge),
+    url(r'^internal_knowledge/', views.internal_knowledge),
+    url(r'^surgery_knowledge/', views.surgery_knowledge),
+    url(r'^logout/', views.logout),
     url(r'^login/', views.login),
     url(r'^register/', views.register),
-    url(r'^logout/', views.logout),
     # 健康问卷
     url(r'^questionnaire/',views.questionnaire),
     url(r'^question/', views.question),

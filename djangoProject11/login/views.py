@@ -15,7 +15,9 @@ def control(request):
     return render(request, 'control/index.html')
 # 用户列表页面
 def userlist(request):
-    return render(request, 'control/userlist.html')
+    users = models.User.objects.filter()
+    print(type(users), len(users))
+    return render(request, 'control/userlist.html',{'users':users, 'long':len(users)})
 # 增加用户页面
 def adduser(request):
     return render(request, 'control/adduser.html')
@@ -37,13 +39,18 @@ def control_Internal(request):
 # 外科检查
 def control_Surgical(request):
     return render(request, 'control/Normal.html')
-
-# 新闻管理页面
-def news_information(request):
-    return render(request, 'control/news_information.html')
-# 增加新闻页面
-def add_news_information(request):
-    return render(request, 'control/add_news_information.html')
+# 内科新闻管理
+def internal_new(request):
+    return render(request, 'control/Internal_new.html')
+# 增加内科新闻
+def add_Internal_news(request):
+    return render(request, 'control/add_Internal_news.html')
+# 外科新闻管理
+def surgery_new(request):
+    return render(request, 'control/surgery_new.html')
+# 增加外科新闻
+def add_surgery_news(request):
+    return render(request, 'control/add_surgery_news.html')
 
 
 # 前台路由
@@ -51,8 +58,11 @@ def index(request):
     return render(request, 'index/index.html')
 
 
-def knowledge(request):
-    return render(request, './knowledge/knowledge.html')
+def internal_knowledge(request):
+    return render(request, './knowledge/internal_knowledge.html')
+
+def surgery_knowledge(request):
+    return render(request, './knowledge/surgery_knowledge.html')
 
 
 def login(request):

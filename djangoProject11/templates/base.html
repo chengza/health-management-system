@@ -16,8 +16,14 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/index">首页<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link" href="/knowledge">健康知识<span class="sr-only">(current)</span></a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    健康知识
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/internal_knowledge">内科</a>
+                    <a class="dropdown-item" href="/surgery_knowledge">外科</a>
+                </div>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="/person">个人信息<span class="sr-only">(current)</span></a>
@@ -39,10 +45,8 @@
                     <a class="dropdown-item" href="/surgery">外科检查</a>
                 </div>
             </li>
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
-            </form>
+            {% block search %}
+            {% endblock %}
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% if request.session.is_login %}

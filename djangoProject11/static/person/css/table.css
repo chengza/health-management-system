@@ -2,7 +2,6 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-
 }
 
 body {
@@ -22,39 +21,29 @@ body {
 }
 
 .rg_left {
-
-
     float: left;
     margin: 15px;
 }
 
 .rg_center {
-
-
     float: left;
 }
 
 .rg_right {
-
-
     float: right;
 }
 
 .p_reg {
-
     color: #ffd026;
     font-size: 20px;
 
 }
-
 .p_en {
     color: gray;
     font-size: 20px;
 
 }
-
 .rg_right > p:first-child {
-
     margin: 10px;
 }
 
@@ -71,10 +60,9 @@ body {
 
 .td_right {
     padding-left: 40px;
-
 }
 
-#username, #password, #email, #name, #phone, #birthday, #checkcode {
+#username, #age, #height, #weight, #phone, #birthday, #blood_pressure, #Heart_rate,  #thyroid, #Lymph{
     width: 251px;
     height: 32px;
     border: 1px solid gray;
@@ -101,5 +89,4 @@ body {
     border-radius: 6px;
     /* font-weight: bold; */
     margin-top: 20px;
-
 }

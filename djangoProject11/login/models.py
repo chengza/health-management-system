@@ -18,6 +18,43 @@ class User(models.Model):
     sex = models.CharField(max_length=32,choices=gender,default='男')
     c_time = models.DateTimeField(auto_now_add=True)
 
+    def get_context_data(self, **kwargs):
+        context = super(User, self).get_context_data(*kwargs)
+        paginator = context.get('paginator')
+        page_obj = context.get("page_obj")
+
+        pagination_data = self.get_paginator_data(paginator, page_obj, around_count=2)
+        context.update(pagination_data)
+        return context
+
+    def get_paginator_data(self, paginator, page_obj, around_count=2):
+        current_page = page_obj.number  # 获取当前页
+        num_pages = paginator.num_pages  # 总的页数
+
+        left_has_more = False
+        right_has_more = False
+
+        if current_page <= around_count + 2:
+            left_pages = range(1, current_page)
+        else:
+            left_has_more = True
+            left_pages = range(current_page - around_count, current_page)
+
+        if current_page >= num_pages - around_count - 1:
+            right_pages = range(current_page + 1, num_pages + 1)
+        else:
+            right_has_more = True
+            right_pages = range(current_page + 1, current_page + around_count + 1)  # 左闭右开区间
+
+        return {
+            'left_pages': left_pages,
+            'right_pages': right_pages,
+            'current_page': current_page,
+            'left_has_more': left_has_more,
+            'right_has_more': right_has_more,
+            'num_pages': num_pages
+        }
+
     def __str__(self):
         return self.name
 
