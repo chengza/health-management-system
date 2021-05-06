@@ -6,6 +6,32 @@
     <title>健康评价</title>
 </head>
 <body>
-    健康评价
+
+<div class="my_bmi_title"><h2 class="h2_bmi">BMI 中国标准</h2></div>
+<table><thead><tr><th class="arrow"></th><th>分类</th><th>BMI 范围</th></tr></thead><tbody><tr><td class="arrow"></td><td bgcolor="#CCCCCC">偏瘦</td><td bgcolor="#CCCCCC">&lt;= 18.4</td></tr>
+<tr><td class="arrow"></td><td bgcolor="#66cc00">正常</td><td bgcolor="#66cc00">18.5 ~ 23.9</td></tr>
+<tr><td class="arrow"></td><td bgcolor="#ffff00">过重</td><td bgcolor="#ffff00">24.0 ~ 27.9</td></tr>
+<tr><td class="arrow"></td><td bgcolor="#ff9900">肥胖</td><td bgcolor="#ff9900">&gt;= 28.0</td></tr>
+</tbody></table>
+    您的身高是{% for mess in normal %}
+                {{ mess.height }}
+             {% endfor %}cm,
+        体重是{% for mess in normal %}
+                {{ mess.weight }}
+             {% endfor %}kg,
+        根据BMI（身体质量指数）标准计算准则计算出,
+        您的BMI值为{% for mess in BMI %}
+                     {{ mess }}
+                    {% if mess <= 18.4 %}
+                        您的体型偏瘦，要多吃一点哦( •̀ ω •́ )y
+                    {% elif  mess >= 18.5 and mess <= 23.9 %}
+                        您的体型十分标准，保持住哦(ง •_•)ง
+                    {% elif  mess >= 24.0 and mess <= 27.9 %}
+                        您的体重过重，注意锻炼哦( •̀ ω •́ )y
+                    {% elif  mess >= 28.0 %}
+                        您的体型已经达到肥胖的程度了，需要减肥维持身体健康(ง •_•)ง
+                    {% endif %}
+                   {% endfor %}
+
 </body>
 </html>

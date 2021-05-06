@@ -160,3 +160,49 @@ class Message(models.Model):
 
     def __str__(self):
         return self.name
+
+class Normal(models.Model):
+    name = models.CharField(max_length=128)
+    height = models.IntegerField()
+    weight = models.IntegerField()
+    right_vision = models.CharField(max_length=128)
+    left_vision = models.CharField(max_length=128)
+    pulmonary = models.CharField(max_length=128)
+    date = models.DateField(auto_now=True)
+
+    def __str__(self):
+        return self.name
+
+class Internal(models.Model):
+    name = models.CharField(max_length=128)
+    # 脉搏
+    pulse = models.CharField(max_length=128)
+    # 血压
+    bloodpressure = models.CharField(max_length=128)
+    # 心脏
+    heart = models.CharField(max_length=128)
+    # 肝脏
+    liver = models.CharField(max_length=128)
+    # 脾脏
+    spleen = models.CharField(max_length=128)
+    # 肾脏
+    kidney = models.CharField(max_length=128)
+    # 腹部
+    abdomen = models.CharField(max_length=128)
+    def __str__(self):
+        return self.name
+
+class Surgery(models.Model):
+    name = models.CharField(max_length=128)
+    # 甲状腺
+    thyroid = models.CharField(max_length=128)
+    # 淋巴结
+    lymphgland = models.CharField(max_length=128)
+    # 乳腺
+    breast = models.CharField(max_length=128)
+    # 脊柱
+    spine = models.CharField(max_length=128)
+    # 四肢关节
+    Limbjoints = models.CharField(max_length=128)
+    def __str__(self):
+        return self.name

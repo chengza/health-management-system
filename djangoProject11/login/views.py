@@ -205,10 +205,19 @@ def questionnaire(request):
 
 
 def normal(request):
-    username = request.session['user_name']
-    normal = models.Normal.objects.filter(name=username)
-    return render(request,'health/normal.html',{'normal':normal})
-    # return render(request, 'health/Normal.html')
+    if request.method == "GET":
+        return render(request, 'health/normal.html')
+    else:
+        name = request.POST.get('name')
+        height = request.POST.get('height')
+        weight = request.POST.get('weight')
+        rvision = request.POST.get('right_vision')
+        lvision = request.POST.get('left_vision')
+        pulmonary = request.POST.get('pulmonary')
+        item = Normal(name=name, height=height, weight=weight, right_vision=rvision, left_vision=lvision,
+                      pulmonary=pulmonary)
+        item.save()
+        return render(request, 'health/result.html')
 
 
 def internal(request):
@@ -331,7 +340,7 @@ def question(request):
                         item79=id79, item80=id80, item81=id81, item82=id82, item83=id83
                         , item84=id84, item85=id85, item86=id86, item87=id87, item88=id88, item89=id89, item90=id90)
         item1.save()
-        return render(request,'health/questionresult.html')
+        return render(request,'health/wenjuantiaozhuan.html')
 
 
 
@@ -345,11 +354,16 @@ def test(request):
 
 
 def comment(request):
-    return render(request, 'health/comment.html')
+    username = request.session['user_name']
+    normal = models.Person.objects.filter(number=username)
+    cursor = connection.cursor()
+    cursor.execute("select weight/((height/100)*(height/100)) from login_person where number = %s",username)
+    BMI = cursor.fetchone()
+    return render(request, 'health/comment.html',{'normal':normal,'BMI':BMI})
 
 
 def questionresult(request):
-    # username = request.session['user_name']
+    username = request.session['user_name']
     # message = models.Message.objects.get(name=username)
     # return render(request, 'health/questionresult.html',{'message':message})
     cursor = connection.cursor()
@@ -373,5 +387,10 @@ def questionresult(request):
     F9 = cursor.fetchone()
     cursor.execute("select (item19+item44+item59+item60+item64+item66+item89)/7 from login_message")
     F10 = cursor.fetchone()
+    obj = models.Message.objects.get(name=username)
+    obj.delete()
     return render(request,'health/questionresult.html',
                   {'F1':F1,'F2':F2,'F3':F3,'F4':F4,'F5':F5,'F6':F6,'F7':F7,'F8':F8,'F9':F9,'F10':F10})
+
+def wenjuantiaozhuan(request):
+    return render(request,'wenjuantiaozhuan.html')

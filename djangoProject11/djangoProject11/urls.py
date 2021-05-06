@@ -6,6 +6,8 @@ from login import views
 
 
 urlpatterns = [
+    # 把首页设置成index页面
+    url(r'^$', views.index),
     # 后台
     # url(r'^control/', control.site.urls),
     url(r'^control/', views.control),  # 后台路由
@@ -34,6 +36,7 @@ urlpatterns = [
     url(r'^question/', views.question),
     url(r'^result/', views.result),
     url(r'^questionresult/', views.questionresult),
+    url(r'^wenjuantiaozhuan/', views.wenjuantiaozhuan),
     # 内科检查
     url(r'^internal/',views.internal),
     # 外科
