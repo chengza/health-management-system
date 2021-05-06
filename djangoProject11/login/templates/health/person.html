@@ -20,14 +20,18 @@
     <div class="rg_center">
         <div class="re_form">
 
-            <form action="#" method="post">
+            <form action="/person/" method="post">
                 <table>
-                     <tr>
+                    <tr>
                         <td class="td_left">性别</td>
                         <td class="td_right">
                             <input type="radio" name="gender" value="male">男
                             <input type="radio" name="gender" value="female">女
                         </td>
+                    </tr>
+                    <tr>
+                        <td class="td_left"><label for="username">学号</label></td>
+                        <td class="td_right"><input type="text" name="number" id="username" placeholder="请输入学号"></td>
                     </tr>
                     <tr>
                         <td class="td_left"><label for="username">姓名</label></td>
@@ -39,15 +43,11 @@
                     </tr>
                     <tr>
                         <td class="td_left"><label for="height">身高</label></td>
-                        <td class="td_right"><input type="email" name=height id="height" placeholder="请输入身高：cm"></td>
+                        <td class="td_right"><input type="text" name=height id="height" placeholder="请输入身高：cm"></td>
                     </tr>
                     <tr>
                         <td class="td_left"><label for="weight">体重</label></td>
                         <td class="td_right"><input type="text" name="weight" id="weight" placeholder="请输入体重：kg"></td>
-                    </tr>
-                    <tr>
-                        <td class="td_left"><label for="phone">手机号</label></td>
-                        <td class="td_right"><input type="text" name="phone" id="phone" placeholder="请输入您的手机号"></td>
                     </tr>
                     <tr>
                         <td class="td_left"><label for="birthday">出生日期</label></td>
@@ -61,8 +61,6 @@
         </div>
     </div>
 </div>
-
-
 </body>
 
 </html>

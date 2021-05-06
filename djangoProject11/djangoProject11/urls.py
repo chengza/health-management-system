@@ -40,7 +40,7 @@ urlpatterns = [
     url(r'^surgery/',views.surgery),
     # 一般检查
     url(r'^normal/', views.normal),
-    # 个人中心
+    # 个人信息
     url(r'^person/',views.person),
     # 健康评价
     url(r'^comment/',views.comment),

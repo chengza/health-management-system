@@ -6,7 +6,6 @@ from django.db import models
 
 class User(models.Model):
     '''用户表'''
-
     gender = (
         ('male','男'),
         ('female','女'),
@@ -18,42 +17,6 @@ class User(models.Model):
     sex = models.CharField(max_length=32,choices=gender,default='男')
     c_time = models.DateTimeField(auto_now_add=True)
 
-    def get_context_data(self, **kwargs):
-        context = super(User, self).get_context_data(*kwargs)
-        paginator = context.get('paginator')
-        page_obj = context.get("page_obj")
-
-        pagination_data = self.get_paginator_data(paginator, page_obj, around_count=2)
-        context.update(pagination_data)
-        return context
-
-    def get_paginator_data(self, paginator, page_obj, around_count=2):
-        current_page = page_obj.number  # 获取当前页
-        num_pages = paginator.num_pages  # 总的页数
-
-        left_has_more = False
-        right_has_more = False
-
-        if current_page <= around_count + 2:
-            left_pages = range(1, current_page)
-        else:
-            left_has_more = True
-            left_pages = range(current_page - around_count, current_page)
-
-        if current_page >= num_pages - around_count - 1:
-            right_pages = range(current_page + 1, num_pages + 1)
-        else:
-            right_has_more = True
-            right_pages = range(current_page + 1, current_page + around_count + 1)  # 左闭右开区间
-
-        return {
-            'left_pages': left_pages,
-            'right_pages': right_pages,
-            'current_page': current_page,
-            'left_has_more': left_has_more,
-            'right_has_more': right_has_more,
-            'num_pages': num_pages
-        }
 
     def __str__(self):
         return self.name
@@ -63,14 +26,41 @@ class User(models.Model):
         verbose_name = '用户'
         verbose_name_plural = '用户'
 
-class Normal(models.Model):
+class Control(models.Model):
+    '''管理员'''
+    gender = (
+        ('male','男'),
+        ('female','女'),
+    )
+
+    name = models.CharField(max_length=128,unique=True)
+    password = models.CharField(max_length=256)
+    email = models.EmailField(unique=True)
+    sex = models.CharField(max_length=32,choices=gender,default='男')
+    c_time = models.DateTimeField(auto_now_add=True)
+
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        ordering = ['c_time']
+        verbose_name = '管理员'
+        verbose_name_plural = '管理员'
+
+
+class Person(models.Model):
+    gender = (
+        ('male', '男'),
+        ('female', '女'),
+    )
+    number = models.IntegerField()
     name = models.CharField(max_length=128)
     height = models.IntegerField()
     weight = models.IntegerField()
-    right_vision = models.CharField(max_length=128)
-    left_vision = models.CharField(max_length=128)
-    pulmonary = models.CharField(max_length=128)
-    date = models.DateField(auto_now=True)
+    age = models.IntegerField()
+    sex = models.CharField(max_length=32,choices=gender,default='男')
+    birthday = models.DateField(auto_now=True)
 
     def __str__(self):
         return self.name

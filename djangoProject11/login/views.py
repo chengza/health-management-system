@@ -3,8 +3,8 @@
 from django.shortcuts import render, redirect
 from . import models
 from .forms import UserForm, RegisterForm
-from .models import User, Message, Normal
-from django.contrib.auth.decorators import login_required
+from .models import User, Message, Person
+from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
 
 # 后台路由
 
@@ -16,27 +16,64 @@ def control(request):
 # 用户列表页面
 def userlist(request):
     users = models.User.objects.filter()
-    print(type(users), len(users))
-    return render(request, 'control/userlist.html',{'users':users, 'long':len(users)})
+    return render(request, 'control/userlist.html', {"users":users, 'long':len(users)})
 # 增加用户页面
 def adduser(request):
-    return render(request, 'control/adduser.html')
+    if request.method == "GET":
+        print('get方式访问增加用户页面')
+        return render(request, 'control/adduser.html')
+    else:
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        email = request.POST.get("email")
+        sex = request.POST.get("sex")
+
+        new_user = models.User.objects.create()
+        new_user.name = username
+        new_user.password = password
+        new_user.email = email
+        if sex == 0:
+            new_user.sex = "male"
+        else:
+            new_user.sex = "female"
+        new_user.save()
+    return render(request, 'control/index.html')
 # 管理员管理页面
 def rolelist(request):
-    return render(request, 'control/rolelist.html')
+    controls = models.Control.objects.filter()
+    return render(request, 'control/rolelist.html', {"controls": controls, 'long': len(controls)})
 # 增加管理员页面
 def add_role(request):
-    return render(request, 'control/add_role.html')
-# 基本信息页面
+    if request.method == "GET":
+        print('get方式访问增加用户页面')
+        return render(request, 'control/add_role.html')
+    else:
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        email = request.POST.get("email")
+        sex = request.POST.get("sex")
+
+        new_control = models.Control.objects.create()
+        new_control.name = username
+        new_control.password = password
+        new_control.email = email
+        if sex == 0:
+            new_control.sex = "male"
+        else:
+            new_control.sex = "female"
+        new_control.save()
+    return render(request, 'control/index.html')
+# 基本信息
 def control_Base_info(request):
-    return render(request, 'control/Base_info.html')
-# 一般检查
+    persons = models.Person.objects.filter()
+    return render(request, 'control/Base_info.html', {"persons": persons, 'long': len(persons)})
+# 一般信息
 def control_Normal(request):
     return render(request, 'control/Normal.html')
-# 内科检查
+# 内科信息
 def control_Internal(request):
     return render(request, 'control/Normal.html')
-# 外科检查
+# 外科信息
 def control_Surgical(request):
     return render(request, 'control/Normal.html')
 # 内科新闻管理
@@ -64,6 +101,23 @@ def internal_knowledge(request):
 def surgery_knowledge(request):
     return render(request, './knowledge/surgery_knowledge.html')
 
+def person(request):
+    if request.method == "GET":
+        print('get请求个人信息页面')
+        return render(request, 'health/person.html')
+    else:
+        print('Post请求个人信息页面')
+        sex = request.POST.get('gender')
+        number = request.POST.get('number')
+        name = request.POST.get('username')
+        age = request.POST.get('age')
+        height = request.POST.get('height')
+        weight = request.POST.get('weight')
+        # birthday = request.POST.get('birthday')
+        # print(sex, number, name, age, height, weight, birthday)
+        item = Person(number=number, name=name, height=height, weight=weight, age=age, sex=sex)
+        item.save()
+        return render(request, 'health/result.html')
 
 def login(request):
 
@@ -73,6 +127,7 @@ def login(request):
         if login_form.is_valid():
             username = login_form.cleaned_data['username']
             password = login_form.cleaned_data['password']
+            print("账号密码是：", username, password)
             try:
                 user = models.User.objects.get(name=username)
                 if user.password == password:
@@ -287,22 +342,6 @@ def result(request):
 
 def test(request):
     return render(request, 'health/result.html')
-
-
-def person(request):
-    if request.method == "GET":
-        return render(request, 'health/person.html')
-    else:
-        name = request.POST.get('name')
-        height = request.POST.get('height')
-        weight = request.POST.get('weight')
-        rvision = request.POST.get('right_vision')
-        lvision = request.POST.get('left_vision')
-        pulmonary = request.POST.get('pulmonary')
-        item = Normal(name=name, height=height, weight=weight, right_vision=rvision, left_vision=lvision,
-                      pulmonary=pulmonary)
-        item.save()
-        return render(request, 'health/result.html')
 
 
 def comment(request):

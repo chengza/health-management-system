@@ -32,23 +32,21 @@
                         </div>
                     </form>
                 </div>
-
                 <div class="layui-card-header">
                     <a class="layui-btn lafite_main_color" onclick="xadmin.open('新增用户','./adduser',600,400)">增加用户</a>
                     <span class="layui-btn lafite_main_color" style="margin-right: auto">共计用户：{{ long }}个</span>
                 </div>
-
                 <div class="layui-card-body">
                     <table class="layui-table layui-form">
                         <thead>
-                        <tr style="background: #F8E5E5;">
-                            <th>用户ID</th>
-                            <th>用户名</th>
-                            <th>邮箱</th>
-                            <th>性别</th>
-                            <th>创建时间</th>
-                            <th>操作</th>
-                        </tr>
+                            <tr style="background: #F8E5E5;">
+                                <th>用户ID</th>
+                                <th>用户名</th>
+                                <th>邮箱</th>
+                                <th>性别</th>
+                                <th>创建时间</th>
+                                <th>操作</th>
+                            </tr>
                         </thead>
                         <tbody>
                         {% for user in users %}
@@ -69,39 +67,12 @@
                         </tbody>
                     </table>
                 </div>
-                <div id="lafite_pages"></div>
             </div>
         </div>
     </div>
 </div>
 </body>
 <script>layui.use(['laypage', 'laydate', 'form'],
-    function () {
-        var laydate = layui.laydate;
-        var laypage = layui.laypage;
-
-        // 分页样式
-        laypage.render({
-            elem: 'lafite_pages'
-            , count: 100
-            , theme: '#D91715',
-            jump: function (obj) {
-                //模拟渲染
-                console.log(obj);
-            }
-        });
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#start' //指定元素
-        });
-
-        //执行一个laydate实例
-        laydate.render({
-            elem: '#end' //指定元素
-        });
-    });
-
 {# 查询 #}
 
 function member_del(obj, id) {
