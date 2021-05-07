@@ -1,4 +1,61 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>这里是用户个人中心，显示用户的各项健康信息，在相应的视图函数中，查找数据，返回到前端显示</h1>
+{#    <h1>这里是用户个人中心，显示用户的各项健康信息，在相应的视图函数中，查找数据，返回到前端显示</h1>#}
+<table border="1">
+  <tr>
+    <th>学号</th>
+    <th>姓名</th>
+    <th>身高</th>
+    <th>体重</th>
+  </tr>
+  <tr>
+      {% for per in person %}
+      <td>{{ per.number }}</td>
+      <td>{{ per.name }}</td>
+      <td>{{ per.height }}</td>
+      <td>{{ per.weight }}</td>
+      {% endfor %}
+  </tr>
+</table>
+
+<table border="1">
+  <tr>
+    <th>脉搏</th>
+    <th>血压</th>
+    <th>心率</th>
+    <th>肝脏</th>
+    <th>脾脏</th>
+    <th>肾脏</th>
+    <th>腹部</th>
+  </tr>
+  <tr>
+      {% for per in internal %}
+      <td>{{ per.pulse }}</td>
+      <td>{{ per.bloodpressure }}</td>
+      <td>{{ per.heart }}</td>
+      <td>{{ per.liver }}</td>
+      <td>{{ per.spleen }}</td>
+      <td>{{ per.kidney }}</td>
+      <td>{{ per.abdomen }}</td>
+      {% endfor %}
+  </tr>
+</table>
+
+<table border="1">
+  <tr>
+    <th>甲状腺</th>
+    <th>淋巴结</th>
+    <th>乳腺</th>
+    <th>脊柱</th>
+    <th>四肢关节</th>
+  </tr>
+  <tr>
+      {% for per in surgery %}
+      <td>{{ per.thyroid }}</td>
+      <td>{{ per.lymphgland }}</td>
+      <td>{{ per.breast }}</td>
+      <td>{{ per.spine }}</td>
+      <td>{{ per.Limbjoints }}</td>
+      {% endfor %}
+  </tr>
 {% endblock %}

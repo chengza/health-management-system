@@ -11,9 +11,9 @@ class User(models.Model):
         ('female','女'),
     )
 
-    name = models.CharField(max_length=128,unique=True)
+    name = models.CharField(max_length=128)
     password = models.CharField(max_length=256)
-    email = models.EmailField(unique=True)
+    email = models.EmailField()
     sex = models.CharField(max_length=32,choices=gender,default='男')
     c_time = models.DateTimeField(auto_now_add=True)
 
@@ -54,7 +54,7 @@ class Person(models.Model):
         ('male', '男'),
         ('female', '女'),
     )
-    number = models.IntegerField()
+    number = models.CharField(max_length=128)
     name = models.CharField(max_length=128)
     height = models.IntegerField()
     weight = models.IntegerField()

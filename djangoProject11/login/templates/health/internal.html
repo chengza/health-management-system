@@ -19,8 +19,12 @@
 
     <div class="rg_center">
         <div class="re_form">
-            <form action="#" method="post">
+            <form action="/internal/" method="post">
                 <table>
+                    <tr>
+                        <td class="td_left">学号</td>
+                        <td class="td_right"><input type="text" name="name" id="health_info" value={{ request.session.user_name }}></td>
+                    </tr>
                     <tr>
                         <td class="td_left">脉搏</td>
                         <td class="td_right"><input type="text" name="pulse" id="health_info" placeholder="脉搏"></td>
@@ -31,7 +35,7 @@
                     </tr>
                     <tr>
                         <td class="td_left">心率</td>
-                        <td class="td_right"><input type="email" name=heart id="health_info" placeholder="心率"></td>
+                        <td class="td_right"><input type="text" name="heart" id="health_info" placeholder="心率"></td>
                     </tr>
                     <tr>
                         <td class="td_left">肝脏</td>

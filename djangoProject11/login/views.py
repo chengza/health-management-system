@@ -3,9 +3,9 @@
 from django.shortcuts import render, redirect
 from . import models
 from .forms import UserForm, RegisterForm
-from .models import User, Message, Person, Normal
+from .models import User, Message, Person, Normal, Internal, Surgery
 from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
-
+from django.contrib.auth.decorators import login_required
 # 后台路由
 
 from django.db import connection
@@ -93,15 +93,31 @@ def index(request):
 
 # 内科知识
 def internal_knowledge(request):
+    # 登陆验证
+    if not request.session.get('is_login', None):
+        return redirect("/login/")
     return render(request, './knowledge/internal_knowledge.html')
 # 外科知识
 def surgery_knowledge(request):
+    # 登陆验证
+    if not request.session.get('is_login', None):
+        return redirect("/login/")
     return render(request, './knowledge/surgery_knowledge.html')
 # 个人中心
 def person_center(request):
-    return render(request, './health/person_center.html')
+    # 登陆验证
+    if not request.session.get('is_login', None):
+        return redirect("/login/")
+    username = request.session['user_name']
+    person = models.Person.objects.filter(number=username)
+    internal = models.Internal.objects.filter(name=username)
+    surgery = models.Surgery.objects.filter(name=username)
+    return render(request, './health/person_center.html',{'person':person,'internal':internal,'surgery':surgery})
 
 def person(request):
+    # 登陆验证
+    if not request.session.get('is_login', None):
+        return redirect("/login/")
     if request.method == "GET":
         print('get请求个人信息页面')
         return render(request, 'health/person.html')
@@ -199,11 +215,10 @@ def logout(request):
 
 
 def questionnaire(request):
-    # print 1
+    # 登陆验证
+    if not request.session.get('is_login', None):
+        return redirect("/login/")
     return render(request, 'health/questionnaire.html')
-    # return render(request,'health/questionnaire.html')
-
-
 
 def normal(request):
     if request.method == "GET":
@@ -222,15 +237,50 @@ def normal(request):
 
 
 def internal(request):
-    return render(request, 'health/internal.html')
+    # 登陆验证
+    if not request.session.get('is_login', None):
+        return redirect("/login/")
+    if request.method == "GET":
+        return render(request, 'health/internal.html')
+    else:
+        name = request.POST.get('name')
+        pulse = request.POST.get('pulse')
+        bloodpressure = request.POST.get('bloodpressure')
+        heart = request.POST.get('heart')
+        liver = request.POST.get('liver')
+        spleen = request.POST.get('spleen')
+        kidney = request.POST.get('kidney')
+        abdomen = request.POST.get('abdomen')
+        item = Internal(name=name, pulse=pulse, bloodpressure=bloodpressure, heart=heart, liver=liver,
+                      spleen=spleen,kidney=kidney,abdomen=abdomen)
+        item.save()
+        return render(request, 'health/result.html')
 
 
 
 def surgery(request):
-    return render(request, 'health/surgery.html')
+    # 登陆验证
+    if not request.session.get('is_login', None):
+        return redirect("/login/")
+    if request.method == "GET":
+        return render(request, 'health/surgery.html')
+    else:
+        name = request.POST.get('name')
+        thyroid = request.POST.get('thyroid')
+        lymphgland = request.POST.get('lymphgland')
+        breast = request.POST.get('breast')
+        spine = request.POST.get('spine')
+        Limbjoints = request.POST.get('Limbjoints')
+        item = Surgery(name=name, thyroid=thyroid, lymphgland=lymphgland, breast=breast, spine=spine,
+                        Limbjoints=Limbjoints)
+        item.save()
+        return render(request, 'health/result.html')
 
 
 def question(request):
+    # 登陆验证
+    if not request.session.get('is_login', None):
+        return redirect("/login/")
     if request.method == 'GET':
         return render(request, 'health/question.html')
     else:
@@ -355,6 +405,9 @@ def test(request):
 
 
 def comment(request):
+    # 登陆验证
+    if not request.session.get('is_login', None):
+        return redirect("/login/")
     username = request.session['user_name']
     normal = models.Person.objects.filter(number=username)
     cursor = connection.cursor()
@@ -364,6 +417,9 @@ def comment(request):
 
 
 def questionresult(request):
+    # 登陆验证
+    if not request.session.get('is_login', None):
+        return redirect("/login/")
     username = request.session['user_name']
     # message = models.Message.objects.get(name=username)
     # return render(request, 'health/questionresult.html',{'message':message})
@@ -394,4 +450,7 @@ def questionresult(request):
                   {'F1':F1,'F2':F2,'F3':F3,'F4':F4,'F5':F5,'F6':F6,'F7':F7,'F8':F8,'F9':F9,'F10':F10})
 
 def wenjuantiaozhuan(request):
+    # 登陆验证
+    if not request.session.get('is_login', None):
+        return redirect("/login/")
     return render(request,'wenjuantiaozhuan.html')
