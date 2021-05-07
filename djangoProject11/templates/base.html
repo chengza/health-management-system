@@ -26,7 +26,7 @@
                 </div>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="/person">个人信息<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="/person_center">个人中心<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link" href="/questionnaire">健康问卷<span class="sr-only">(current)</span></a>
@@ -41,8 +41,11 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 {#                    <a class="dropdown-item" href="/normal">一般信息</a>#}
-                    <a class="dropdown-item" href="/internal">内科信息</a>
-                    <a class="dropdown-item" href="/surgery">外科信息</a>
+{#                    <a class="dropdown-item" href="/internal">内科信息</a>#}
+{#                    <a class="dropdown-item" href="/surgery">外科信息</a>#}
+                    <a class="nav-link" href="/person">个人信息<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/internal">内科信息<span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/surgery">外科信息<span class="sr-only">(current)</span></a>
                 </div>
             </li>
             {% block search %}

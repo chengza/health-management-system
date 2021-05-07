@@ -45,6 +45,8 @@ urlpatterns = [
     url(r'^normal/', views.normal),
     # 个人信息
     url(r'^person/',views.person),
+    # 个人中心
+    url(r'^person_center/',views.person_center),
     # 健康评价
     url(r'^comment/',views.comment),
 

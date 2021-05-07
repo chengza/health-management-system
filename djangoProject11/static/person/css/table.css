@@ -62,7 +62,8 @@ body {
     padding-left: 40px;
 }
 
-#username, #age, #height, #weight, #phone, #birthday, #blood_pressure, #Heart_rate,  #thyroid, #Lymph{
+/*#number, #name, #age, #height, #weight, #birthday, #blood_pressure, #Heart_rate,  #thyroid, #Lymph, #health_info{*/
+#health_info{
     width: 251px;
     height: 32px;
     border: 1px solid gray;

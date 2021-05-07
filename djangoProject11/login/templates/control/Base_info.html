@@ -56,31 +56,12 @@
             </div>
         </div>
     </body>
-    <script>layui.use(['laypage', 'laydate', 'form'],
-        function() {
-            var laydate = layui.laydate;
-            var laypage = layui.laypage;
+    <script>
+        layui.use(['laypage', 'laydate', 'form'],
+            function() {
+                var laydate = layui.laydate;
+                var laypage = layui.laypage;
 
-            // 分页样式
-            laypage.render({
-                elem: 'lafite_pages'
-                ,count: 100
-                ,theme: '#D91715',
-                jump: function(obj){
-                //模拟渲染
-                    console.log(obj);
-                }
-            });
-
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#start' //指定元素
-            });
-
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#end' //指定元素
-            });
         });
 
         {# 查询 #}

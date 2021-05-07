@@ -3,7 +3,7 @@
 from django.shortcuts import render, redirect
 from . import models
 from .forms import UserForm, RegisterForm
-from .models import User, Message, Person
+from .models import User, Message, Person, Normal
 from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
 
 # 后台路由
@@ -94,12 +94,15 @@ def add_surgery_news(request):
 def index(request):
     return render(request, 'index/index.html')
 
-
+# 内科知识
 def internal_knowledge(request):
     return render(request, './knowledge/internal_knowledge.html')
-
+# 外科知识
 def surgery_knowledge(request):
     return render(request, './knowledge/surgery_knowledge.html')
+# 个人中心
+def person_center(request):
+    return render(request, './health/person_center.html')
 
 def person(request):
     if request.method == "GET":
@@ -109,10 +112,11 @@ def person(request):
         print('Post请求个人信息页面')
         sex = request.POST.get('gender')
         number = request.POST.get('number')
-        name = request.POST.get('username')
+        name = request.POST.get('name')
         age = request.POST.get('age')
         height = request.POST.get('height')
         weight = request.POST.get('weight')
+
         # birthday = request.POST.get('birthday')
         # print(sex, number, name, age, height, weight, birthday)
         item = Person(number=number, name=name, height=height, weight=weight, age=age, sex=sex)

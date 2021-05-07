@@ -18,20 +18,9 @@
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <div class="layui-card">
-                <div class="layui-card-body ">
-                    <form class="layui-form layui-col-space5">
-                        <div class="layui-input-inline layui-show-xs-block">
-                            <input type="text" name="username" placeholder="关键字" autocomplete="off"
-                                   class="layui-input">
-                        </div>
-                        <div class="layui-input-inline lafite_search layui-show-xs-block">
-                            <button class="layui-btn" lay-submit="" lay-filter="sreach" onclick="serch">查询</button>
-                        </div>
-                    </form>
-                </div>
                 <div class="layui-card-header">
                     <button class="layui-btn lafite_card_btn"
-                            onclick="parent.xadmin.add_tab('新增内科新闻','add_Internal_news')">新增内科新闻
+                            onclick="parent.xadmin.add_tab('新增内科新闻','add_Internal_news')">新增新闻
                     </button>
                     <button class="layui-btn lafite_card_btn" onclick="delAll()">删除</button>
                 </div>
@@ -61,10 +50,8 @@
                             <td>张三</td>
                             <td>张三</td>
                             <td class="td-manage lafite_table_a_blue">
-                                <a title="编辑" class="" onclick="parent.xadmin.add_tab('编辑交易中心','add_trading_center')"
-                                   href="javascript:;">编辑</a>
-                                <a class="lafite_margin_left_8px" title="删除" onclick="member_del(this,'要删除的id')"
-                                   href="javascript:;">删除</a>
+                                <a title="编辑" class="" onclick="parent.xadmin.add_tab('编辑内科新闻','add_Internal_news')" href="javascript:;">编辑</a>
+                                <a class="lafitewu_del lafitewu_margin_left_10" title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">删除</a>
                             </td>
                         </tr>
                         <tr>
@@ -77,10 +64,8 @@
                             <td>张三</td>
                             <td>张三</td>
                             <td class="td-manage lafite_table_a_blue">
-                                <a title="编辑" class="" onclick="parent.xadmin.add_tab('编辑交易中心','add_trading_center')"
-                                   href="javascript:;">编辑</a>
-                                <a class="lafite_margin_left_8px" title="删除" onclick="member_del(this,'要删除的id')"
-                                   href="javascript:;">删除</a>
+                                <a title="编辑" class="" onclick="parent.xadmin.add_tab('编辑内科新闻','add_Internal_news')" href="javascript:;">编辑</a>
+                                <a class="lafitewu_del lafitewu_margin_left_10" title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">删除</a>
                             </td>
                         </tr>
                         </tbody>
@@ -97,55 +82,7 @@
         var form = layui.form;
         var laypage = layui.laypage;
 
-        // 分页样式
-        laypage.render({
-            elem: 'lafite_pages'
-            , count: 100
-            , theme: '#D91715',
-            jump: function (obj) {
-                //模拟渲染
-                console.log(obj);
-            }
-        });
-
-        // 监听全选
-        form.on('checkbox(checkall)', function (data) {
-
-            if (data.elem.checked) {
-                $('tbody input').prop('checked', true);
-            } else {
-                $('tbody input').prop('checked', false);
-            }
-            form.render('checkbox');
-        });
-
     });
-
-    /*用户-停用*/
-    function member_stop(obj, id) {
-        layer.confirm('确认要下架吗？',
-            {title: '上下架操作'},
-            function (index) {
-
-                if ($(obj).attr('title') == '下架') {
-
-                    //发异步把用户状态进行更改
-                    $(obj).attr('title', '上架')
-                    $(obj).find('span').html('上架');
-
-                    $(obj).parents("tr").find(".td-status").find('span').addClass('layui-btn-disabled').html('已下架');
-                    layer.msg('已下架!', {icon: 5, time: 1000});
-
-                } else {
-                    $(obj).attr('title', '下架')
-                    $(obj).find('span').html('下架');
-
-                    $(obj).parents("tr").find(".td-status").find('span').removeClass('layui-btn-disabled').html('已上架');
-                    layer.msg('已上架!', {icon: 5, time: 1000});
-                }
-
-            });
-    }
 
     /*用户-删除*/
     function member_del(obj, id) {
@@ -159,14 +96,12 @@
 
     function delAll(argument) {
         var ids = [];
-
         // 获取选中的id 
         $('tbody input').each(function (index, el) {
             if ($(this).prop('checked')) {
                 ids.push($(this).val())
             }
         });
-
         layer.confirm('确认要删除吗？' + ids.toString(), function (index) {
             //捉到所有被选中的，发异步进行删除
             layer.msg('删除成功', {icon: 1});

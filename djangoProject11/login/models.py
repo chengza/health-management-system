@@ -179,7 +179,7 @@ class Internal(models.Model):
     pulse = models.CharField(max_length=128)
     # 血压
     bloodpressure = models.CharField(max_length=128)
-    # 心脏
+    # 心率
     heart = models.CharField(max_length=128)
     # 肝脏
     liver = models.CharField(max_length=128)

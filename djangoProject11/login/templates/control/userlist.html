@@ -39,14 +39,14 @@
                 <div class="layui-card-body">
                     <table class="layui-table layui-form">
                         <thead>
-                            <tr style="background: #F8E5E5;">
-                                <th>用户ID</th>
-                                <th>用户名</th>
-                                <th>邮箱</th>
-                                <th>性别</th>
-                                <th>创建时间</th>
-                                <th>操作</th>
-                            </tr>
+                        <tr style="background: #F8E5E5;">
+                            <th>用户ID</th>
+                            <th>用户名</th>
+                            <th>邮箱</th>
+                            <th>性别</th>
+                            <th>创建时间</th>
+                            <th>操作</th>
+                        </tr>
                         </thead>
                         <tbody>
                         {% for user in users %}
@@ -72,26 +72,30 @@
     </div>
 </div>
 </body>
-<script>layui.use(['laypage', 'laydate', 'form'],
-{# 查询 #}
+    <script>layui.use(['laypage', 'laydate', 'form'],
+        function() {
+            var laydate = layui.laydate;
+            var laypage = layui.laypage;
 
-function member_del(obj, id) {
-
-}
-
-/*用户-删除*/
-function member_del(obj, id) {
-    layer.confirm('是否确认删除当前项目？',
-        {title: "项目删除"},
-        function (index) {
-            //发异步删除数据
-            $(obj).parents("tr").remove();
-            layer.msg('已删除!', {
-                icon: 1,
-                time: 1000
-            });
         });
-}
-</script>
 
+        {# 查询 #}
+        function member_del(obj, id) {
+
+        }
+
+        /*用户-删除*/
+        function member_del(obj, id) {
+            layer.confirm('是否确认删除当前项目？',
+            {title:"项目删除"},
+            function(index) {
+                //发异步删除数据
+                $(obj).parents("tr").remove();
+                layer.msg('已删除!', {
+                    icon: 1,
+                    time: 1000
+                });
+            });
+        }
+    </script>
 </html>
