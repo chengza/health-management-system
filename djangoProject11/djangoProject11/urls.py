@@ -15,10 +15,9 @@ urlpatterns = [
     url(r'^adduser/', views.adduser),  # 新增用户
     url(r'^rolelist/', views.rolelist),  # 管理员管理
     url(r'^add_role/', views.add_role),  # 新增管理员
-    url(r'^Base_info/', views.control_Base_info),  # 基本信息
-    url(r'^Normal/', views.control_Normal),  # 一般检查
-    url(r'^Internal/', views.control_Internal),  # 内科检查
-    url(r'^Surgical/', views.control_Surgical),  # 外科检查
+    url(r'^control_Base_info/', views.control_Base_info),  # 后台显示基本信息
+    url(r'^control_Internal/', views.control_Internal),  # 后台显示内科信息
+    url(r'^control_Surgical/', views.control_Surgical),  # 后台显示外科信息
     url(r'^internal_new/', views.internal_new),  # 内科新闻
     url(r'^add_Internal_news/', views.add_Internal_news),  # 增加内科新闻
     url(r'^surgery_new/', views.surgery_new),  # 外科新闻

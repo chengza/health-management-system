@@ -67,15 +67,12 @@ def add_role(request):
 def control_Base_info(request):
     persons = models.Person.objects.filter()
     return render(request, 'control/Base_info.html', {"persons": persons, 'long': len(persons)})
-# 一般信息
-def control_Normal(request):
-    return render(request, 'control/Normal.html')
 # 内科信息
 def control_Internal(request):
-    return render(request, 'control/Normal.html')
+    return render(request, 'control/Internal.html')
 # 外科信息
 def control_Surgical(request):
-    return render(request, 'control/Normal.html')
+    return render(request, 'control/Surgical.html')
 # 内科新闻管理
 def internal_new(request):
     return render(request, 'control/Internal_new.html')

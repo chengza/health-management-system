@@ -25,9 +25,6 @@
         <a href="./index"
            style="margin-top: 25px">&nbsp;&nbsp;&nbsp;健康信息管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;后台</a>
     </div>
-    {#            <div class="left_open">#}
-    {#                <a><i title="展开左侧栏" class="iconfont">&#xe699;</i></a>#}
-    {#            </div>#}
 
     <ul class="layui-nav right" lay-filter="">
         <li class="layui-nav-item">
@@ -59,12 +56,10 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('用户列表','userlist')">
-                            <cite>用户列表</cite></a>
+                        <a onclick="xadmin.add_tab('用户列表','userlist')"><cite>用户列表</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('管理员列表','rolelist')">
-                            <cite>管理员列表</cite></a>
+                        <a onclick="xadmin.add_tab('管理员列表','rolelist')"><cite>管理员列表</cite></a>
                     </li>
                 </ul>
             </li>
@@ -76,16 +71,13 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a onclick="xadmin.add_tab('基本信息','Base_info')">
-                            <cite>基本信息</cite></a>
+                        <a onclick="xadmin.add_tab('基本信息','control_Base_info')"><cite>基本信息</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('内科信息','Internal')">
-                            <cite>内科信息</cite></a>
+                        <a onclick="xadmin.add_tab('内科信息','control_Internal')"><cite>内科信息</cite></a>
                     </li>
                     <li>
-                        <a onclick="xadmin.add_tab('外科信息','Surgical')">
-                            <cite>外科信息</cite></a>
+                        <a onclick="xadmin.add_tab('外科信息','control_Surgical')"><cite>外科信息</cite></a>
                     </li>
                 </ul>
             </li>
