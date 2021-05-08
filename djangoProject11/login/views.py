@@ -40,16 +40,24 @@ def adduser(request):
     return render(request, 'control/index.html')
 # 后台删除用户
 def del_user(request):
-    print("到达删除用户的视图函数")
-    # print("要删除的用户id是：", user_id)
-    # print(request.GET.get('user.id'))
-    return render(request, 'control/userlist.html')
-# 后台删除用户
+    user_id = request.GET.get('user_id')
+    models.User.objects.filter(id=user_id).delete()
+    print('要删除的id是：', user_id)
+    users = models.User.objects.filter()
+    return render(request, 'control/userlist.html', {"users": users, 'long': len(users)})
+# 后台编辑用户
 def adit_user(request):
-    print("到达编辑用户的视图函数")
-    # print("要删除的用户id是：", user_id)
-    # print(request.GET.get('user.id'))
-    return render(request, 'control/userlist.html')
+    user_id = request.GET.get('user_id')
+    print('要编辑的id是：', user_id)
+    user = models.User.objects.filter(id=user_id)
+    return render(request, 'control/adit_user_control.html', {'user': user})
+# 编辑后保存更新
+def update_user(request):
+    user_id = request.POST.get('user_id')
+    print('要保存更新的id是：', user_id)
+    user = models.User.objects.filter(id=user_id)
+    # users = models.User.objects.filter()
+    # return render(request, 'control/userlist.html', {"users": users, 'long': len(users)})
 
 
 # 管理员管理页面

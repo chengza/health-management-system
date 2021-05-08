@@ -15,57 +15,62 @@
 <body>
 <div class="layui-fluid lafite_add_alert">
     <div class="layui-row">
-        <form class="layui-form" action="/adduser/" method="post">
-
-            <div class="layui-form-item">
-                <label for="L_email" class="layui-form-label">
-                    <span class="x-red">*</span> 用户名
-                </label>
-                <div class="layui-input-block lafite_width_60">
-                    <input type="text" id="L_email" name="username" required lay-verify="required" autocomplete="off"
-                           class="layui-input"></div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_pass" class="layui-form-label">
-                    <span class="x-red">*</span> 密码</label>
-                <div class="layui-input-block lafite_width_60">
-                    <input type="password" id="L_pass" name="password" required="" lay-verify="pass" autocomplete="off"
-                           class="layui-input">
+        <form class="layui-form" action="/update_user/" method="post">
+            {% for u in user %}
+                <input type="hidden" name="user_id" value="{{ u.id }}">
+                <div class="layui-form-item">
+                    <label for="L_email" class="layui-form-label">
+                        <span class="x-red">*</span> 用户名
+                    </label>
+                    <div class="layui-input-block lafite_width_60">
+                        <input type="text" id="L_email" name="username" required lay-verify="required" autocomplete="off"
+                               class="layui-input" value="{{ u.name }}">
+                    </div>
                 </div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_repass" class="layui-form-label">
-                    <span class="x-red">*</span> 确认密码</label>
-                <div class="layui-input-block lafite_width_60">
-                    <input type="password" id="L_repass" name="re_password" required="" lay-verify="repass"
-                           autocomplete="off" class="layui-input"></div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_username" class="layui-form-label">
-                    <span class="x-red">*</span> 邮箱
-                </label>
-                <div class="layui-input-block lafite_width_60">
-                    <input type="text" id="L_username" name="email" required="" lay-verify="nikename"
-                           autocomplete="off" class="layui-input"></div>
-            </div>
-            <div class="layui-form-item">
-                <label for="L_repass" class="layui-form-label">
-                    <span class="x-red">*</span>性别
-                </label>
-                <div class="layui-input-block lafite_width_60">
-                    <select name="sex" lay-verify="required">
-                        <option value=""></option>
-                        <option value="0">男</option>
-                        <option value="1">女</option>
-                    </select>
+                <div class="layui-form-item">
+                    <label for="L_pass" class="layui-form-label">
+                        <span class="x-red">*</span> 密码</label>
+                    <div class="layui-input-block lafite_width_60">
+                        <input type="password" id="L_pass" name="password" required="" lay-verify="pass" autocomplete="off"
+                               class="layui-input" value="{{ u.password }}">
+                    </div>
                 </div>
-            </div>
-            <div class="layui-form-item">
-                <div class="layui-input-block">
-                    <div class="lafite-layui-btn lafite_float_left lafite_height_35px" onclick="xadmin.close()">取消</div>
-                    <button lay-submit lay-filter="formDemo" class="lafite-layui-btn2 lafite_margin_left_10 lafite_height_35px" type="submit">保存</button>
+                <div class="layui-form-item">
+                    <label for="L_repass" class="layui-form-label">
+                        <span class="x-red">*</span> 确认密码</label>
+                    <div class="layui-input-block lafite_width_60">
+                        <input type="password" id="L_repass" name="re_password" required="" lay-verify="repass" autocomplete="off"
+                               class="layui-input" value="{{ u.password }}">
+                    </div>
                 </div>
-            </div>
+                <div class="layui-form-item">
+                    <label for="L_username" class="layui-form-label">
+                        <span class="x-red">*</span> 邮箱
+                    </label>
+                    <div class="layui-input-block lafite_width_60">
+                        <input type="text" id="L_username" name="email" required="" lay-verify="nikename" autocomplete="off"
+                               class="layui-input" value="{{ u.email }}">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label for="L_repass" class="layui-form-label">
+                        <span class="x-red">*</span>性别
+                    </label>
+                    <div class="layui-input-block lafite_width_60">
+                        <select name="sex" lay-verify="required">
+                            <option value=""></option>
+                            <option value="0">男</option>
+                            <option value="1">女</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <div class="lafite-layui-btn lafite_float_left lafite_height_35px" onclick="xadmin.close()">取消</div>
+                        <button lay-submit lay-filter="formDemo" class="lafite-layui-btn2 lafite_margin_left_10 lafite_height_35px" type="submit">保存</button>
+                    </div>
+                </div>
+            {% endfor %}
         </form>
     </div>
 </div>
