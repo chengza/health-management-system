@@ -11,10 +11,12 @@ urlpatterns = [
     # 后台
     # url(r'^control/', control.site.urls),
     url(r'^control/', views.control),  # 后台路由
-    url(r'^userlist/', views.userlist),  # 用户管理
-    url(r'^adduser/', views.adduser),  # 新增用户
-    url(r'^rolelist/', views.rolelist),  # 管理员管理
-    url(r'^add_role/', views.add_role),  # 新增管理员
+    url(r'^userlist/', views.userlist),  # 后台用户管理
+    url(r'^adduser/', views.adduser),  # 后台新增用户
+    url(r'^del_user/?P<user_id>[0-9]/', views.del_user),  # 后台删除用户路由
+    url(r'^adit_user/?P<user_id>[0-9]/', views.adit_user),  # 后台编辑用户路由
+    url(r'^rolelist/', views.rolelist),  # 后台管理员管理
+    url(r'^add_role/', views.add_role),  # 后台新增管理员
     url(r'^control_Base_info/', views.control_Base_info),  # 后台显示基本信息
     url(r'^control_Internal/', views.control_Internal),  # 后台显示内科信息
     url(r'^control_Surgical/', views.control_Surgical),  # 后台显示外科信息

@@ -38,6 +38,20 @@ def adduser(request):
             new_user.sex = "female"
         new_user.save()
     return render(request, 'control/index.html')
+# 后台删除用户
+def del_user(request):
+    print("到达删除用户的视图函数")
+    # print("要删除的用户id是：", user_id)
+    # print(request.GET.get('user.id'))
+    return render(request, 'control/userlist.html')
+# 后台删除用户
+def adit_user(request):
+    print("到达编辑用户的视图函数")
+    # print("要删除的用户id是：", user_id)
+    # print(request.GET.get('user.id'))
+    return render(request, 'control/userlist.html')
+
+
 # 管理员管理页面
 def rolelist(request):
     controls = models.Control.objects.filter()
@@ -69,10 +83,12 @@ def control_Base_info(request):
     return render(request, 'control/Base_info.html', {"persons": persons, 'long': len(persons)})
 # 内科信息
 def control_Internal(request):
-    return render(request, 'control/Internal.html')
+    Internal_infos = models.Internal.objects.filter()
+    return render(request, 'control/Internal.html', {"Internal_infos": Internal_infos, 'long': len(Internal_infos)})
 # 外科信息
 def control_Surgical(request):
-    return render(request, 'control/Surgical.html')
+    Surgery_infos = models.Surgery.objects.filter()
+    return render(request, 'control/Surgical.html', {"Surgery_infos": Surgery_infos, 'long': len(Surgery_infos)})
 # 内科新闻管理
 def internal_new(request):
     return render(request, 'control/Internal_new.html')
@@ -130,9 +146,9 @@ def person(request):
         height = request.POST.get('height')
         weight = request.POST.get('weight')
 
-        # birthday = request.POST.get('birthday')
+        birthday = request.POST.get('birthday')
         # print(sex, number, name, age, height, weight, birthday)
-        item = Person(number=number, name=name, height=height, weight=weight, age=age, sex=sex)
+        item = Person(number=number, name=name, height=height, weight=weight, age=age, sex=sex, birthday=birthday)
         item.save()
         return render(request, 'health/result.html')
 
@@ -145,17 +161,25 @@ def login(request):
             username = login_form.cleaned_data['username']
             password = login_form.cleaned_data['password']
             print("账号密码是：", username, password)
-            try:
-                user = models.User.objects.get(name=username)
-                if user.password == password:
-                    request.session['is_login'] = True
-                    request.session['user_id'] = user.id
-                    request.session['user_name'] = user.name
-                    return redirect('/index')
-                else:
-                    message = "密码不正确！"
-            except:
-                message = "用户不存在！"
+            user = models.User.objects.get(name=username)
+            if user.password == password:
+                request.session['is_login'] = True
+                request.session['user_id'] = user.id
+                request.session['user_name'] = user.name
+                return redirect('/index')
+            else:
+                message = "密码不正确！"
+            # try:
+            #     user = models.User.objects.get(name=username)
+            #     if user.password == password:
+            #         request.session['is_login'] = True
+            #         request.session['user_id'] = user.id
+            #         request.session['user_name'] = user.name
+            #         return redirect('/index')
+            #     else:
+            #         message = "密码不正确！"
+            # except:
+            #     message = "用户不存在！"
         return render(request, 'login/login.html', locals())
 
     login_form = UserForm()
