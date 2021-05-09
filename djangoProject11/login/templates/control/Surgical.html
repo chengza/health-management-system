@@ -43,8 +43,9 @@
                                         <td>{{ Surgery_info.spine }}</td>
                                         <td>{{ Surgery_info.Limbjoints }}</td>
                                         <td class="td-manage">
-                                            <a class="lafitewu_auditing" title="编辑" onclick="xadmin.open('编辑','./adduser',600,500)" href="javascript:;">编辑</a>
-                                            <a class="lafitewu_del lafitewu_margin_left_10" title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">删除</a>
+                                            <a class="lafitewu_auditing" title="编辑" onclick="xadmin.open('编辑','./adit_Surgery/?user_name={{ Surgery_info.name }}',600,500)" href="javascript:;">编辑</a>
+{#                                            <a class="lafitewu_del lafitewu_margin_left_10" title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">删除</a>#}
+                                            <a class="lafitewu_del lafitewu_margin_left_10" title="删除" href="/del_Surgery/?user_name={{ Surgery_info.name }}">删除</a>
                                         </td>
                                     </tr>
                                 {% endfor %}

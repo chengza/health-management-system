@@ -47,8 +47,9 @@
                                         <td>{{ Internal_info.kidney }}</td>
                                         <td>{{ Internal_info.abdomen }}</td>
                                         <td class="td-manage">
-                                            <a class="lafitewu_auditing" title="编辑" onclick="xadmin.open('编辑','./adduser',600,500)" href="javascript:;">编辑</a>
-                                            <a class="lafitewu_del lafitewu_margin_left_10" title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">删除</a>
+                                            <a class="lafitewu_auditing" title="编辑" onclick="xadmin.open('编辑','./adit_Internal/?user_name={{ Internal_info.name }}',600,500)" href="javascript:;">编辑</a>
+{#                                            <a class="lafitewu_del lafitewu_margin_left_10" title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">删除</a>#}
+                                            <a class="lafitewu_del lafitewu_margin_left_10" title="删除" href="/del_Internal/?user_name={{ Internal_info.name }}">删除</a>
                                         </td>
                                     </tr>
                                 {% endfor %}
@@ -65,46 +66,8 @@
             var laydate = layui.laydate;
             var laypage = layui.laypage;
 
-            // 分页样式
-            laypage.render({
-                elem: 'lafite_pages'
-                ,count: 100
-                ,theme: '#D91715',
-                jump: function(obj){
-                //模拟渲染
-                    console.log(obj);
-                }
-            });
-
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#start' //指定元素
-            });
-
-            //执行一个laydate实例
-            laydate.render({
-                elem: '#end' //指定元素
-            });
         });
 
-        {# 查询 #}
-        function member_del(obj, id) {
-
-        }
-
-        /*用户-删除*/
-        function member_del(obj, id) {
-            layer.confirm('是否确认删除当前项目？',
-            {title:"项目删除"},
-            function(index) {
-                //发异步删除数据
-                $(obj).parents("tr").remove();
-                layer.msg('已删除!', {
-                    icon: 1,
-                    time: 1000
-                });
-            });
-        }
     </script>
 
 </html>

@@ -15,16 +15,16 @@
 <body>
 <div class="layui-fluid lafite_add_alert">
     <div class="layui-row">
-        <form class="layui-form" action="/update_user/" method="post">
-            {% for u in user %}
-                <input type="hidden" name="user_id" value="{{ u.id }}">
+        <form class="layui-form" action="/update_control/" method="post">
+            {% for c in control %}
+                <input type="hidden" name="control_id" value="{{ c.id }}">
                 <div class="layui-form-item">
                     <label for="L_email" class="layui-form-label">
-                        <span class="x-red">*</span> 用户名
+                        <span class="x-red">*</span> 管理员用户名
                     </label>
                     <div class="layui-input-block lafite_width_60">
                         <input type="text" id="L_email" name="username" required lay-verify="required" autocomplete="off"
-                               class="layui-input" value="{{ u.name }}">
+                               class="layui-input" value="{{ c.name }}">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -32,7 +32,7 @@
                         <span class="x-red">*</span> 密码</label>
                     <div class="layui-input-block lafite_width_60">
                         <input type="password" id="L_pass" name="password" required="" lay-verify="pass" autocomplete="off"
-                               class="layui-input" value="{{ u.password }}">
+                               class="layui-input" value="{{ c.password }}">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -40,7 +40,7 @@
                         <span class="x-red">*</span> 确认密码</label>
                     <div class="layui-input-block lafite_width_60">
                         <input type="password" id="L_repass" name="re_password" required="" lay-verify="repass" autocomplete="off"
-                               class="layui-input" value="{{ u.password }}">
+                               class="layui-input" value="{{ c.password }}">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -49,7 +49,7 @@
                     </label>
                     <div class="layui-input-block lafite_width_60">
                         <input type="text" id="L_username" name="email" required="" lay-verify="nikename" autocomplete="off"
-                               class="layui-input" value="{{ u.email }}">
+                               class="layui-input" value="{{ c.email }}">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -59,8 +59,8 @@
                     <div class="layui-input-block lafite_width_60">
                         <select name="sex" lay-verify="required">
                             <option value=""></option>
-                            <option value="0">男</option>
-                            <option value="1">女</option>
+                            <option value="male">男</option>
+                            <option value="female">女</option>
                         </select>
                     </div>
                 </div>

@@ -11,16 +11,34 @@ urlpatterns = [
     # 后台
     # url(r'^control/', control.site.urls),
     url(r'^control/', views.control),  # 后台路由
+
     url(r'^userlist/', views.userlist),  # 后台用户管理
     url(r'^adduser/', views.adduser),  # 后台新增用户
-    url(r'^del_user/', views.del_user),  # 后台删除用户路由
     url(r'^adit_user/', views.adit_user),  # 后台编辑用户路由
     url(r'^update_user/', views.update_user),  # 后台更新用户路由
+    url(r'^del_user/', views.del_user),  # 后台删除用户路由
+
     url(r'^rolelist/', views.rolelist),  # 后台管理员管理
     url(r'^add_role/', views.add_role),  # 后台新增管理员
+    url(r'^adit_control/', views.adit_control),  # 后台编辑管理员路由
+    url(r'^update_control/', views.update_control),  # 后台更新管理员路由
+    url(r'^del_control/', views.del_control),  # 后台删除管理员路由
+
     url(r'^control_Base_info/', views.control_Base_info),  # 后台显示基本信息
+    url(r'^adit_Base_info/', views.adit_Base_info),  # 后台编辑基本信息路由
+    url(r'^update_Base_info/', views.update_Base_info),  # 后台编辑基本信息后保存路由
+    url(r'^del_Base_info/', views.del_Base_info),  # 后台删除某条基本信息路由
+
     url(r'^control_Internal/', views.control_Internal),  # 后台显示内科信息
-    url(r'^control_Surgical/', views.control_Surgical),  # 后台显示外科信息
+    url(r'^adit_Internal/', views.adit_Internal),  # 后台编辑基本信息路由
+    url(r'^update_Internal/', views.update_Internal),  # 后台编辑基本信息后保存路由
+    url(r'^del_Internal/', views.del_Internal),  # 后台删除某条基本信息路由
+
+    url(r'^control_Surgery/', views.control_Surgery),  # 后台显示外科信息
+    url(r'^adit_Surgery/', views.adit_Surgery),  # 后台编辑基本信息路由
+    url(r'^update_Surgery/', views.update_Surgery),  # 后台编辑基本信息后保存路由
+    url(r'^del_Surgery/', views.del_Surgery),  # 后台删除某条基本信息路由
+
     url(r'^internal_new/', views.internal_new),  # 内科新闻
     url(r'^add_Internal_news/', views.add_Internal_news),  # 增加内科新闻
     url(r'^surgery_new/', views.surgery_new),  # 外科新闻
@@ -28,8 +46,8 @@ urlpatterns = [
 
     # 首页
     url(r'^index/', views.index),
-    url(r'^internal_knowledge/', views.internal_knowledge),
-    url(r'^surgery_knowledge/', views.surgery_knowledge),
+    url(r'^internal_knowledge/', views.internal_knowledge),  # 内科知识
+    url(r'^surgery_knowledge/', views.surgery_knowledge),  # 外科知识
     url(r'^logout/', views.logout),
     url(r'^login/', views.login),
     url(r'^register/', views.register),

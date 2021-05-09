@@ -60,7 +60,7 @@ class Person(models.Model):
     weight = models.IntegerField()
     age = models.IntegerField()
     sex = models.CharField(max_length=32,choices=gender,default='男')
-    birthday = models.DateField(auto_now=True)
+    birthday = models.DateField(auto_now=False)
 
     def __str__(self):
         return self.name

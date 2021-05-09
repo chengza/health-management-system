@@ -42,22 +42,28 @@ def adduser(request):
 def del_user(request):
     user_id = request.GET.get('user_id')
     models.User.objects.filter(id=user_id).delete()
-    print('要删除的id是：', user_id)
+    print('要删除的用户id是：', user_id)
     users = models.User.objects.filter()
     return render(request, 'control/userlist.html', {"users": users, 'long': len(users)})
 # 后台编辑用户
 def adit_user(request):
     user_id = request.GET.get('user_id')
-    print('要编辑的id是：', user_id)
+    print('要编辑的用户id是：', user_id)
     user = models.User.objects.filter(id=user_id)
-    return render(request, 'control/adit_user_control.html', {'user': user})
+    return render(request, 'control/adit_user.html', {'user': user})
 # 编辑后保存更新
 def update_user(request):
     user_id = request.POST.get('user_id')
-    print('要保存更新的id是：', user_id)
+    print('要保存更新的用户id是：', user_id)
     user = models.User.objects.filter(id=user_id)
-    # users = models.User.objects.filter()
-    # return render(request, 'control/userlist.html', {"users": users, 'long': len(users)})
+    for u in user:
+        u.name = request.POST.get('username')
+        u.password = request.POST.get('password')
+        u.email = request.POST.get('email')
+        u.sex = request.POST.get('sex')
+        u.save()
+    users = models.User.objects.filter()
+    return render(request, 'control/userlist.html', {"users": users, 'long': len(users)})
 
 
 # 管理员管理页面
@@ -85,18 +91,149 @@ def add_role(request):
             new_control.sex = "female"
         new_control.save()
     return render(request, 'control/index.html')
+# 后台删除管理员
+def del_control(request):
+    print('到达删除管理员视图函数')
+    control_id = request.GET.get('control_id')
+    print('要删除的管理员id是：', control_id)
+    models.Control.objects.filter(id=control_id).delete()
+    controls = models.Control.objects.filter()
+    return render(request, 'control/rolelist.html', {"controls": controls, 'long': len(controls)})
+# 后台编辑管理员
+def adit_control(request):
+    print('到达编辑管理员视图函数')
+    control_id = request.GET.get('control_id')
+    print('要编辑的管理员id是：', control_id)
+    control = models.Control.objects.filter(id=control_id)
+    return render(request, 'control/adit_control.html', {'control': control})
+# 编辑后保存更新
+def update_control(request):
+    print('到达要保存更新管理员视图函数')
+    control_id = request.POST.get('control_id')
+    print('要保存更新的管理员id是：', control_id)
+    control = models.Control.objects.filter(id=control_id)
+    for c in control:
+        c.name = request.POST.get('username')
+        c.password = request.POST.get('password')
+        c.email = request.POST.get('email')
+        c.sex = request.POST.get('sex')
+        c.save()
+    controls = models.Control.objects.filter()
+    return render(request, 'control/rolelist.html', {"controls": controls, 'long': len(controls)})
+
+
 # 基本信息
 def control_Base_info(request):
     persons = models.Person.objects.filter()
     return render(request, 'control/Base_info.html', {"persons": persons, 'long': len(persons)})
+# 后台删除某条 基本信息
+def del_Base_info(request):
+    print('到达删除基本信息视图函数')
+    user_name = request.GET.get('user_name')    # 用户id与他的信息id可能不对应，所以通过用户名查找，而不是用户id
+    print('要删除的基本信息用户名是：', user_name)
+    models.Person.objects.filter(name=user_name).delete()
+    person_Base_infos = models.Person.objects.filter()
+    return render(request, 'control/Base_info.html',{"person_Base_infos": person_Base_infos})
+# 后台编辑某条 基本信息
+def adit_Base_info(request):
+    print('到达编辑基本信息视图函数')
+    user_name = request.GET.get('user_name')    # 用户id与他的信息id可能不对应，所以通过用户名查找，而不是用户id
+    print('要编辑的基本信息用户名是：', user_name)
+    person_Base_info = models.Person.objects.filter(name=user_name)
+    return render(request, 'control/adit_Base_info.html', {'person_Base_info': person_Base_info})
+# 编辑后保存更新某条 基本信息
+def update_Base_info(request):
+    print('到达要保存更新基本信息视图函数')
+    user_name = request.POST.get('user_name') # 用户id与他的信息id可能不对应，所以通过用户名查找，而不是用户id
+    print('要保存更新的基本信息用户名是：', user_name)
+    person_Base_info = models.Person.objects.filter(name=user_name)
+    for p in person_Base_info:
+        p.number = request.POST.get('number')
+        p.name = request.POST.get('name')
+        p.age = request.POST.get('age')
+        p.height = request.POST.get('height')
+        p.weight = request.POST.get('weight')
+        p.birthday = request.POST.get('birthday')
+        p.sex = request.POST.get('sex')
+        p.save()
+    person_Base_infos = models.Person.objects.filter()
+    return render(request, 'control/Base_info.html', {"person_Base_infos": person_Base_infos})
+
 # 内科信息
 def control_Internal(request):
     Internal_infos = models.Internal.objects.filter()
     return render(request, 'control/Internal.html', {"Internal_infos": Internal_infos, 'long': len(Internal_infos)})
+# 后台删除某条 内科信息
+def del_Internal(request):
+    print('到达删除内科信息视图函数')
+    user_name = request.GET.get('user_name')    # 用户id与他的信息id可能不对应，所以通过用户名查找，而不是用户id
+    print('要删除的内科信息用户名是：', user_name)
+    models.Internal.objects.filter(name=user_name).delete()
+    Internal_info = models.Internal.objects.filter()
+    return render(request, 'control/Base_info.html',{"Internal_info": Internal_info})
+# 后台编辑某条 内科信息
+def adit_Internal(request):
+    print('到达编辑内科信息视图函数')
+    user_name = request.GET.get('user_name')    # 用户id与他的信息id可能不对应，所以通过用户名查找，而不是用户id
+    print('要编辑的内科信息用户名是：', user_name)
+    Internal_info = models.Internal.objects.filter(name=user_name)
+    return render(request, 'control/adit_Internal.html', {'Internal_info': Internal_info})
+# 编辑后保存更新某条 内科信息
+def update_Internal(request):
+    print('到达要保存更新内科信息视图函数')
+    user_name = request.POST.get('user_name') # 用户id与他的信息id可能不对应，所以通过用户名查找，而不是用户id
+    print('要保存更新的内科信息用户名是：', user_name)
+    Internal_info = models.Internal.objects.filter(name=user_name)
+    for Internal in Internal_info:
+        Internal.pulse = request.POST.get('pulse')
+        Internal.bloodpressure = request.POST.get('bloodpressure')
+        Internal.heart = request.POST.get('heart')
+        Internal.liver = request.POST.get('liver')
+        Internal.spleen = request.POST.get('spleen')
+        Internal.kidney = request.POST.get('kidney')
+        Internal.abdomen = request.POST.get('abdomen')
+        Internal.save()
+    Internal_info = models.Internal.objects.filter()
+    return render(request, 'control/Base_info.html', {"Internal_info": Internal_info})
+
+
 # 外科信息
-def control_Surgical(request):
+def control_Surgery(request):
     Surgery_infos = models.Surgery.objects.filter()
     return render(request, 'control/Surgical.html', {"Surgery_infos": Surgery_infos, 'long': len(Surgery_infos)})
+# 后台删除某条 外科信息
+def del_Surgery(request):
+    print('到达删除外科信息视图函数')
+    user_name = request.GET.get('user_name')    # 用户id与他的信息id可能不对应，所以通过用户名查找，而不是用户id
+    print('要删除的外科信息用户名是：', user_name)
+    models.Surgery.objects.filter(name=user_name).delete()
+    Surgical_info = models.Surgery.objects.filter()
+    return render(request, 'control/Internal.html',{"Surgical_info": Surgical_info})
+# 后台编辑某条 外科信息
+def adit_Surgery(request):
+    print('到达编辑外科信息视图函数')
+    user_name = request.GET.get('user_name')    # 用户id与他的信息id可能不对应，所以通过用户名查找，而不是用户id
+    print('要编辑的外科信息用户名是：', user_name)
+    Surgery_info = models.Surgery.objects.filter(name=user_name)
+    return render(request, 'control/adit_Surgery.html', {'Surgery_info': Surgery_info})
+# 编辑后保存更新某条 外科信息
+def update_Surgery(request):
+    print('到达要保存更新外科信息视图函数')
+    user_name = request.POST.get('user_name') # 用户id与他的信息id可能不对应，所以通过用户名查找，而不是用户id
+    print('要保存更新的外科信息用户名是：', user_name)
+    Surgery_info = models.Surgery.objects.filter(name=user_name)
+    for Surgery in Surgery_info:
+        Surgery.name = request.POST.get('name')
+        Surgery.thyroid = request.POST.get('thyroid')
+        Surgery.lymphgland = request.POST.get('lymphgland')
+        Surgery.breast = request.POST.get('breast')
+        Surgery.spine = request.POST.get('spine')
+        Surgery.Limbjoints = request.POST.get('Limbjoints')
+        Surgery.save()
+    Internal_info = models.Internal.objects.filter()
+    return render(request, 'control/Base_info.html', {"Internal_info": Internal_info})
+
+
 # 内科新闻管理
 def internal_new(request):
     return render(request, 'control/Internal_new.html')
@@ -133,7 +270,8 @@ def person_center(request):
     if not request.session.get('is_login', None):
         return redirect("/login/")
     username = request.session['user_name']
-    person = models.Person.objects.filter(number=username)
+    # person = models.Person.objects.filter(number=username) 当用户名与学号不一致时，个人中心无法显示
+    person = models.Person.objects.filter(name=username)
     internal = models.Internal.objects.filter(name=username)
     surgery = models.Surgery.objects.filter(name=username)
     return render(request, './health/person_center.html',{'person':person,'internal':internal,'surgery':surgery})
@@ -441,7 +579,8 @@ def comment(request):
     if not request.session.get('is_login', None):
         return redirect("/login/")
     username = request.session['user_name']
-    normal = models.Person.objects.filter(number=username)
+    # normal = models.Person.objects.filter(number=username)   # 当用户名与学号不一致时，查询失败
+    normal = models.Person.objects.filter(name=username)
     cursor = connection.cursor()
     cursor.execute("select weight/((height/100)*(height/100)) from login_person where number = %s",username)
     BMI = cursor.fetchone()
