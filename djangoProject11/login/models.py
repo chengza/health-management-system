@@ -206,3 +206,30 @@ class Surgery(models.Model):
     Limbjoints = models.CharField(max_length=128)
     def __str__(self):
         return self.name
+
+class InternalNews(models.Model):
+    # 发布者
+    Publisher = models.CharField(max_length=128)
+    # 标题
+    Internaltitle = models.CharField(max_length=128)
+    # 日期
+    Internaldate = models.DateField(auto_now=True)
+    # 关键字
+    Internalkeywords = models.CharField(max_length=128)
+    # 导读
+    Internalpreread = models.CharField(max_length=128)
+    # 正文
+    Internalarticle = models.TextField()
+
+    def __str__(self):
+        return self.name
+
+class SurgeryNews(models.Model):
+    Publisher = models.CharField(max_length=128)
+    Surgerytitle = models.CharField(max_length=128)
+    Surgerydate = models.DateField(auto_now=True)
+    Surgerykeywords = models.CharField(max_length=128)
+    Surgerypreread = models.CharField(max_length=128)
+    Surgeryarticle = models.TextField()
+    def __str__(self):
+        return self.name

@@ -6,6 +6,7 @@ from .forms import UserForm, RegisterForm
 from .models import User, Message, Person, Normal, Internal, Surgery
 from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 # 后台路由
 
 from django.db import connection
@@ -295,7 +296,14 @@ def person(request):
         birthday = request.POST.get('birthday')
         # print(sex, number, name, age, height, weight, birthday)
         item = Person(number=number, name=name, height=height, weight=weight, age=age, sex=sex, birthday=birthday)
-        item.save()
+        # 删除用户前面输入的数据
+        username = request.session['user_name']
+        try:
+            if models.Person.objects.get(name=username):
+                models.Person.objects.get(name=username).delete()
+                item.save()
+        except:
+            item.save()
         return render(request, 'health/result.html')
 
 def login(request):
@@ -423,7 +431,14 @@ def internal(request):
         abdomen = request.POST.get('abdomen')
         item = Internal(name=name, pulse=pulse, bloodpressure=bloodpressure, heart=heart, liver=liver,
                       spleen=spleen,kidney=kidney,abdomen=abdomen)
-        item.save()
+        # 删除用户前面输入的数据
+        username = request.session['user_name']
+        try:
+            if models.Internal.objects.get(name=username):
+                models.Internal.objects.get(name=username).delete()
+                item.save()
+        except:
+            item.save()
         return render(request, 'health/result.html')
 
 
@@ -443,7 +458,14 @@ def surgery(request):
         Limbjoints = request.POST.get('Limbjoints')
         item = Surgery(name=name, thyroid=thyroid, lymphgland=lymphgland, breast=breast, spine=spine,
                         Limbjoints=Limbjoints)
-        item.save()
+        # 删除用户前面输入的数据
+        username = request.session['user_name']
+        try:
+            if models.Surgery.objects.get(name=username):
+                models.Surgery.objects.get(name=username).delete()
+                item.save()
+        except:
+            item.save()
         return render(request, 'health/result.html')
 
 
@@ -580,7 +602,7 @@ def comment(request):
         return redirect("/login/")
     username = request.session['user_name']
     # normal = models.Person.objects.filter(number=username)   # 当用户名与学号不一致时，查询失败
-    normal = models.Person.objects.filter(name=username)
+    normal = models.Person.objects.filter(number=username)
     cursor = connection.cursor()
     cursor.execute("select weight/((height/100)*(height/100)) from login_person where number = %s",username)
     BMI = cursor.fetchone()
