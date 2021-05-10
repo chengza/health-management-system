@@ -41,8 +41,14 @@ urlpatterns = [
 
     url(r'^internal_new/', views.internal_new),  # 内科新闻
     url(r'^add_Internal_news/', views.add_Internal_news),  # 增加内科新闻
+    url(r'^adit_Internal_new/', views.adit_Internal_new),  # 编辑内科新闻
+    url(r'^del_Internal_new/', views.del_Internal_new),  # 删除内科新闻
+
+
     url(r'^surgery_new/', views.surgery_new),  # 外科新闻
     url(r'^add_surgery_news/', views.add_surgery_news),  # 增加外科新闻
+    url(r'^adit_surgery_new/', views.adit_surgery_new),  # 编辑外科新闻
+    url(r'^del_surgery_new/', views.del_surgery_new),  # 删除外科新闻
 
     # 首页
     url(r'^index/', views.index),

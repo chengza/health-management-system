@@ -13,7 +13,18 @@ from django.db import connection
 
 # 后台路由
 def control(request):
-    return render(request, 'control/index.html')
+    if request.method == "POST":
+        control_username = request.POST.get('control_username')
+        request.session['control_username'] = control_username
+        control_password = request.POST.get('control_password')
+        control_user = models.Control.objects.filter(name=control_username)
+        if len(control_user) == 0 or control_password != control_user[0].password:
+            message = "账号密码错误"
+            return render(request, 'control/login.html', {'message':message})
+        else:
+            return render(request, 'control/index.html', {'control_username':control_username})
+    else:
+        return render(request, 'control/login.html')
 # 用户列表页面
 def userlist(request):
     users = models.User.objects.filter()
@@ -237,16 +248,103 @@ def update_Surgery(request):
 
 # 内科新闻管理
 def internal_new(request):
-    return render(request, 'control/Internal_new.html')
+    Internal_news_s = models.InternalNews.objects.filter()
+    return render(request, 'control/Internal_new.html', {'Internal_news_s':Internal_news_s})
 # 增加内科新闻
 def add_Internal_news(request):
-    return render(request, 'control/add_Internal_news.html')
+    if request.method == 'POST':
+        internal_new = models.InternalNews.objects.create()
+        internal_new.Publisher = request.POST.get('Publisher')
+        internal_new.Internaltitle = request.POST.get('Internaltitle')
+        internal_new.Internalkeywords = request.POST.get('Internalkeywords')
+        internal_new.Internalpreread = request.POST.get('Internalpreread')
+        internal_new.Internalarticle = request.POST.get('Internalarticle')
+        internal_new.save()
+        print("内科新闻增加成功")
+        return render(request, 'control/Internal_new.html')
+    else:
+        print("增加新闻的管理员是：", request.session.get('control_username'))
+        Publisher = request.session.get('control_username')
+        return render(request, 'control/add_Internal_news.html', {'Publisher':Publisher})
+# 编辑内科新闻并保存
+def adit_Internal_new(request):
+    print('到达编辑内科新闻视图函数')
+    new_id = request.GET.get('new_id')
+    print('要编辑的新闻id是：', new_id)
+    if request.method == 'POST':
+        new_id = request.POST.get('new_id')
+        print(1111, new_id)
+        internal_new = models.InternalNews.objects.filter(id=new_id)
+        for internal_new in internal_new:
+            internal_new.Publisher = request.POST.get('Publisher')
+            internal_new.Internaltitle = request.POST.get('Internaltitle')
+            internal_new.Internalkeywords = request.POST.get('Internalkeywords')
+            internal_new.Internalpreread = request.POST.get('Internalpreread')
+            internal_new.Internalarticle = request.POST.get('Internalarticle')
+            internal_new.save()
+        print("内科新闻更新成功")
+        return render(request, 'control/Internal_new.html')
+    else:
+        print(2222)
+        new = models.InternalNews.objects.filter(id=new_id)
+        return render(request, 'control/adit_Internal_new.html', {'new':new})
+# 删除内科新闻
+def del_Internal_new(request):
+    print('到达删除内科新闻视图函数')
+    new_id = request.GET.get('new_id')
+    print('要删除的内科新闻id是：', new_id)
+    models.InternalNews.objects.filter(id=new_id).delete()
+    Internal_news_s = models.InternalNews.objects.filter()
+    return render(request, 'control/Internal_new.html', {'Internal_news_s': Internal_news_s})
+
 # 外科新闻管理
 def surgery_new(request):
-    return render(request, 'control/surgery_new.html')
+    surgery_news_s = models.SurgeryNews.objects.filter()
+    return render(request, 'control/surgery_new.html', {"surgery_news_s":surgery_news_s})
 # 增加外科新闻
 def add_surgery_news(request):
-    return render(request, 'control/add_surgery_news.html')
+    if request.method == 'POST':
+        surgery_new = models.SurgeryNews.objects.create()
+        surgery_new.Publisher = request.POST.get('Publisher')
+        surgery_new.Surgerytitle = request.POST.get('Surgerytitle')
+        surgery_new.Surgerykeywords = request.POST.get('Surgerykeywords')
+        surgery_new.Surgerypreread = request.POST.get('Surgerypreread')
+        surgery_new.Surgeryarticle = request.POST.get('Surgeryarticle')
+        surgery_new.save()
+        print("外科新闻增加成功")
+        return render(request, 'control/Internal_new.html')
+    else:
+        print("增加新闻的管理员是：", request.session.get('control_username'))
+        Publisher = request.session.get('control_username')
+        return render(request, 'control/add_surgery_news.html', {'Publisher':Publisher})
+# 编辑外科新闻并保存
+def adit_surgery_new(request):
+    print('到达编辑外科新闻视图函数')
+    new_id = request.GET.get('new_id')
+    print('要编辑的外科新闻id是：', new_id)
+    if request.method == 'POST':
+        new_id = request.POST.get('new_id')
+        surgery_new = models.SurgeryNews.objects.filter(id=new_id)
+        for surgery_new in surgery_new:
+            surgery_new.Publisher = request.POST.get('Publisher')
+            surgery_new.Surgerytitle = request.POST.get('Surgerytitle')
+            surgery_new.Surgerykeywords = request.POST.get('Surgerykeywords')
+            surgery_new.Surgerypreread = request.POST.get('Surgerypreread')
+            surgery_new.Surgeryarticle = request.POST.get('Surgeryarticle')
+            surgery_new.save()
+        print("外科新闻更新成功")
+        return render(request, 'control/Surgical.html')
+    else:
+        new = models.SurgeryNews.objects.filter(id=new_id)
+        return render(request, 'control/adit_surgery_new.html', {'new':new})
+# 删除外科新闻
+def del_surgery_new(request):
+    print('到达删除外科新闻视图函数')
+    new_id = request.GET.get('new_id')
+    print('要删除的外科新闻id是：', new_id)
+    models.SurgeryNews.objects.filter(id=new_id).delete()
+    surgery_news_s = models.SurgeryNews.objects.filter()
+    return render(request, 'control/surgery_new.html', {"surgery_news_s": surgery_news_s})
 
 
 # 前台路由
