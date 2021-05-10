@@ -691,7 +691,21 @@ def result(request):
 
 
 def test(request):
-    return render(request, 'health/result.html')
+    if not request.session.get('is_login', None):
+        return redirect("/login/")
+    username = request.session['user_name']
+    internal = models.Internal.objects.filter(name=username)
+    items = []
+    for info in internal:
+        items.append(info.liver)
+        items.append(info.spleen)
+        items.append(info.kidney)
+        items.append(info.abdomen)
+        print(items)
+        items = [int(i) for i in items]
+        print(items)
+    context = {'items':items}
+    return render(request, 'health/test.html',context=context)
 
 
 def comment(request):
@@ -700,11 +714,30 @@ def comment(request):
         return redirect("/login/")
     username = request.session['user_name']
     # normal = models.Person.objects.filter(number=username)   # 当用户名与学号不一致时，查询失败
-    normal = models.Person.objects.filter(number=username)
+    normal = models.Person.objects.filter(name=username)
+    internal = models.Internal.objects.filter(name=username)
+    surgery = models.Surgery.objects.filter(name=username)
     cursor = connection.cursor()
-    cursor.execute("select weight/((height/100)*(height/100)) from login_person where number = %s",username)
+    cursor.execute("select weight/((height/100)*(height/100)) from login_person where name = %s",username)
     BMI = cursor.fetchone()
-    return render(request, 'health/comment.html',{'normal':normal,'BMI':BMI})
+    items = []
+    items1 = []
+    for info in internal:
+        items.append(info.liver)
+        items.append(info.spleen)
+        items.append(info.kidney)
+        items.append(info.abdomen)
+        print(items)
+        items = [int(i) for i in items]
+        print(items)
+    for info in surgery:
+        items1.append(info.thyroid)
+        items1.append(info.lymphgland)
+        items1.append(info.breast)
+        items1.append(info.spine)
+        items1 = [int(i) for i in items1]
+    context = {'items':items,'items1':items1,'normal':normal,'BMI':BMI}
+    return render(request, 'health/comment.html',context=context)
 
 
 def questionresult(request):

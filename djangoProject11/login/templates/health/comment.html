@@ -2,17 +2,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="static/person/css/table.css">
     <title>健康评价</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
 </head>
 <body>
-
-{#<div class="my_bmi_title"><h2 class="h2_bmi">BMI 中国标准</h2></div>#}
-{#<table><thead><tr><th class="arrow"></th><th>分类</th><th>BMI 范围</th></tr></thead><tbody><tr><td class="arrow"></td><td bgcolor="#CCCCCC">偏瘦</td><td bgcolor="#CCCCCC">&lt;= 18.4</td></tr>#}
-{#<tr><td class="arrow"></td><td bgcolor="#66cc00">正常</td><td bgcolor="#66cc00">18.5 ~ 23.9</td></tr>#}
-{#<tr><td class="arrow"></td><td bgcolor="#ffff00">过重</td><td bgcolor="#ffff00">24.0 ~ 27.9</td></tr>#}
-{#<tr><td class="arrow"></td><td bgcolor="#ff9900">肥胖</td><td bgcolor="#ff9900">&gt;= 28.0</td></tr>#}
-{#</tbody></table>#}
+    <div class="rg_layout">
+        <div class="rg_left">
+            <p class="p_reg">基本健康信息</p>
+        </div>
     您的身高是{% for mess in normal %}
                 {{ mess.height }}
              {% endfor %}cm,
@@ -32,6 +33,86 @@
                         您的体型已经达到肥胖的程度了，需要减肥维持身体健康(ง •_•)ง
                     {% endif %}
                    {% endfor %}
+        <hr>
+        <div class="rg_left">
+            <p class="p_reg">基本健康信息</p>
+        </div>
+        <div id="container" style="width: 400px; height: 330px; margin: 0 auto"></div>
+        <script language="JavaScript">
+        $(document).ready(function() {
+           var chart = {
+              type: 'column'
+           };
+           var title = {
+              text: '内科健康评分'
+           };
+           var xAxis = {
+              categories: ['肝脏','脾脏','肾脏','腹部'],
+              crosshair: true
+           };
+           var yAxis = {
+              min: 0,
+              title: {
+                 text: '分数'
+              }
+           };
 
+           var series= [{
+                    name:'内科',
+                    data: {{ items }}
+        },
+
+           ];
+
+           var json = {};
+           json.chart = chart;
+           json.title = title;
+           json.xAxis = xAxis;
+           json.yAxis = yAxis;
+           json.series = series;
+
+           $('#container').highcharts(json);
+
+        });
+        </script>
+{#    <div id="container" style="width: 400px; height: 330px; margin: 0 auto"></div>#}
+{#        <script language="JavaScript">#}
+{#        $(document).ready(function() {#}
+{#           var chart = {#}
+{#              type: 'column'#}
+{#           };#}
+{#           var title = {#}
+{#              text: '外科健康评分'#}
+{#           };#}
+{#           var xAxis = {#}
+{#              categories: ['甲状腺','淋巴结','乳腺','脊柱'],#}
+{#              crosshair: true#}
+{#           };#}
+{#           var yAxis = {#}
+{#              min: 0,#}
+{#              title: {#}
+{#                 text: '分数'#}
+{#              }#}
+{#           };#}
+{##}
+{#           var series= [{#}
+{#                    name:'外科',#}
+{#                    data: {{ items1 }}#}
+{#        },#}
+{##}
+{#           ];#}
+{##}
+{#           var json = {};#}
+{#           json.chart = chart;#}
+{#           json.title = title;#}
+{#           json.xAxis = xAxis;#}
+{#           json.yAxis = yAxis;#}
+{#           json.series = series;#}
+{##}
+{#           $('#container').highcharts(json);#}
+{##}
+{#        });#}
+{#        </script>#}
+    </div>
 </body>
 </html>

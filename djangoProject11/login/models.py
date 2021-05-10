@@ -182,13 +182,13 @@ class Internal(models.Model):
     # 心率
     heart = models.CharField(max_length=128)
     # 肝脏
-    liver = models.CharField(max_length=128)
+    liver = models.IntegerField()
     # 脾脏
-    spleen = models.CharField(max_length=128)
+    spleen = models.IntegerField()
     # 肾脏
-    kidney = models.CharField(max_length=128)
+    kidney = models.IntegerField()
     # 腹部
-    abdomen = models.CharField(max_length=128)
+    abdomen = models.IntegerField()
     def __str__(self):
         return self.name
 
