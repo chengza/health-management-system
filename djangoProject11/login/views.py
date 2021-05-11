@@ -356,13 +356,27 @@ def internal_knowledge(request):
     # 登陆验证
     if not request.session.get('is_login', None):
         return redirect("/login/")
-    return render(request, './knowledge/internal_knowledge.html')
+    internal_knowledge_s = models.InternalNews.objects.filter()
+    return render(request, './knowledge/internal_knowledge.html', {"internal_knowledge_s":internal_knowledge_s})
+# 内科知识详情
+def internal_knowledge_detail(request):
+    new_id = request.GET.get('new_id')
+    print("查看内科新闻的id是：", new_id)
+    internal_knowledge = models.InternalNews.objects.filter(id=new_id)
+    return render(request, './knowledge/internal_detail.html', {"internal_knowledge":internal_knowledge})
 # 外科知识
 def surgery_knowledge(request):
     # 登陆验证
     if not request.session.get('is_login', None):
         return redirect("/login/")
-    return render(request, './knowledge/surgery_knowledge.html')
+    surgery_knowledge_s = models.SurgeryNews.objects.filter()
+    return render(request, './knowledge/surgery_knowledge.html', {"surgery_knowledge_s": surgery_knowledge_s})
+# 外科知识详情
+def surgery_knowledge_detail(request):
+    new_id = request.GET.get('new_id')
+    print("查看外科新闻的id是：", new_id)
+    surgery_knowledge = models.SurgeryNews.objects.filter(id=new_id)
+    return render(request, './knowledge/surgery_detail.html', {"surgery_knowledge":surgery_knowledge})
 # 个人中心
 def person_center(request):
     # 登陆验证

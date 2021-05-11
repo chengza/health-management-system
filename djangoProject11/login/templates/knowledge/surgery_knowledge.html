@@ -1,4 +1,41 @@
-{% extends 'knowledge.html' %}
-{% block knowledge %}
-    外科知识
-{% endblock %}
+{% include 'knowledge.html' %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>最新动态</title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="static/knowledge/new_list.css" />
+</head>
+
+<body>
+    <div class="newsCenterPanel">
+        <div class="newsCenterPanel_inner">
+            {% for surgery_knowledge in surgery_knowledge_s %}
+                <div class="newContentBox odd">
+                    <a hidefocus="true" href="/surgery_knowledge_detail/?new_id={{ surgery_knowledge.id }}">
+                        <div class="time">
+                            <p class="day"></p>
+                            <p class="ym">{{ surgery_knowledge.Surgerydate }}</p>
+                        </div>
+                        <div class="newTitle">{{ surgery_knowledge.Surgerytitle }}</div>
+                        <div class="newContent">{{ surgery_knowledge.Surgerypreread }}</div>
+                    </a>
+                </div>
+                <div class="newContentBox even">
+                    <a hidefocus="true" href="/surgery_knowledge_detail/?new_id={{ surgery_knowledge.id }}">
+                        <div class="time">
+                            <p class="day"></p>
+                            <p class="ym">{{ surgery_knowledge.Surgerydate }}</p>
+                        </div>
+                        <div class="newTitle">{{ surgery_knowledge.Surgerytitle }}</div>
+                        <div class="newContent">{{ surgery_knowledge.Surgerypreread }}</div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

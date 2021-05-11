@@ -30,14 +30,14 @@ urlpatterns = [
     url(r'^del_Base_info/', views.del_Base_info),  # 后台删除某条基本信息路由
 
     url(r'^control_Internal/', views.control_Internal),  # 后台显示内科信息
-    url(r'^adit_Internal/', views.adit_Internal),  # 后台编辑基本信息路由
-    url(r'^update_Internal/', views.update_Internal),  # 后台编辑基本信息后保存路由
-    url(r'^del_Internal/', views.del_Internal),  # 后台删除某条基本信息路由
+    url(r'^adit_Internal/', views.adit_Internal),  # 后台编辑内科信息路由
+    url(r'^update_Internal/', views.update_Internal),  # 后台编辑内科信息后保存路由
+    url(r'^del_Internal/', views.del_Internal),  # 后台删除某条内科信息路由
 
     url(r'^control_Surgery/', views.control_Surgery),  # 后台显示外科信息
-    url(r'^adit_Surgery/', views.adit_Surgery),  # 后台编辑基本信息路由
-    url(r'^update_Surgery/', views.update_Surgery),  # 后台编辑基本信息后保存路由
-    url(r'^del_Surgery/', views.del_Surgery),  # 后台删除某条基本信息路由
+    url(r'^adit_Surgery/', views.adit_Surgery),  # 后台编辑外科信息路由
+    url(r'^update_Surgery/', views.update_Surgery),  # 后台编辑外科信息后保存路由
+    url(r'^del_Surgery/', views.del_Surgery),  # 后台删除某条外科信息路由
 
     url(r'^internal_new/', views.internal_new),  # 内科新闻
     url(r'^add_Internal_news/', views.add_Internal_news),  # 增加内科新闻
@@ -53,7 +53,9 @@ urlpatterns = [
     # 首页
     url(r'^index/', views.index),
     url(r'^internal_knowledge/', views.internal_knowledge),  # 内科知识
+    url(r'^internal_knowledge_detail/', views.internal_knowledge_detail),  # 内科知识详情
     url(r'^surgery_knowledge/', views.surgery_knowledge),  # 外科知识
+    url(r'^surgery_knowledge_detail/', views.surgery_knowledge_detail),  # 外科知识详情
     url(r'^logout/', views.logout),
     url(r'^login/', views.login),
     url(r'^register/', views.register),

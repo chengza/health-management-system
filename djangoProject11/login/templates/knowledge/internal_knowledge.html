@@ -1,4 +1,41 @@
-{% extends 'knowledge.html' %}
-{% block knowledge %}
-    内科知识
-{% endblock %}
+{% include 'knowledge.html' %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>最新动态</title>
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="static/knowledge/new_list.css" />
+</head>
+
+<body>
+    <div class="newsCenterPanel">
+        <div class="newsCenterPanel_inner">
+            {% for internal_knowledge in internal_knowledge_s %}
+                <div class="newContentBox odd">
+                    <a hidefocus="true" href="/internal_knowledge_detail/?new_id={{ internal_knowledge.id }}">
+                        <div class="time">
+                            <p class="day"></p>
+                            <p class="ym">{{ internal_knowledge.Internaldate }}</p>
+                        </div>
+                        <div class="newTitle">{{ internal_knowledge.Internaltitle }}</div>
+                        <div class="newContent">{{ internal_knowledge.Internalpreread }}</div>
+                    </a>
+                </div>
+                <div class="newContentBox even">
+                    <a hidefocus="true" href="internal_knowledge_detail/?new_id={{ internal_knowledge.id }}">
+                        <div class="time">
+                            <p class="day"></p>
+                            <p class="ym">{{ internal_knowledge.Internaldate }}</p>
+                        </div>
+                        <div class="newTitle">{{ internal_knowledge.Internaltitle }}</div>
+                        <div class="newContent">{{ internal_knowledge.Internalpreread }}</div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
