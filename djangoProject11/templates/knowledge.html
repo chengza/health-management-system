@@ -1,7 +1,8 @@
 {% extends 'base.html' %}
 {% block search %}
-    <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+    <form class="form-inline my-2 my-lg-0" action="/search_knowledge/" method="post">
+        <input type="hidden" name="route" value="{{ request.path }}">
+        <input class="form-control mr-sm-2" type="search" placeholder="关键字" aria-label="Search" name="keyword">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
     </form>
 {% endblock %}

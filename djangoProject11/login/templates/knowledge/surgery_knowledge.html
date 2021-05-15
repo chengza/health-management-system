@@ -21,17 +21,18 @@
                         <div class="newContent">{{ p_knowledge.Surgerypreread }}</div>
                     </a>
                 </div>
-
-                <div class="newContentBox even">
-                    <a hidefocus="true" href="/surgery_knowledge_detail/?new_id={{ a_knowledge.id }}">
-                        <div class="time">
-                            <p class="day"></p>
-                            <p class="ym">{{ a_knowledge.Surgerydate }}</p>
-                        </div>
-                        <div class="newTitle">{{ a_knowledge.Surgerytitle }}</div>
-                        <div class="newContent">{{ a_knowledge.Surgerypreread }}</div>
-                    </a>
-                </div>
+                {% if  a_knowledge != NUll%}
+                    <div class="newContentBox even">
+                        <a hidefocus="true" href="/surgery_knowledge_detail/?new_id={{ a_knowledge.id }}">
+                            <div class="time">
+                                <p class="day"></p>
+                                <p class="ym">{{ a_knowledge.Surgerydate }}</p>
+                            </div>
+                            <div class="newTitle">{{ a_knowledge.Surgerytitle }}</div>
+                            <div class="newContent">{{ a_knowledge.Surgerypreread }}</div>
+                        </a>
+                    </div>
+                {% endif %}
 
             {% endfor %}
         </div>

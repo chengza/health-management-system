@@ -396,6 +396,24 @@ def surgery_knowledge_detail(request):
     article = mark_safe(surgery_knowledge[0].Surgeryarticle)
     print(type(article), article)
     return render(request, './knowledge/surgery_detail.html', {"surgery_knowledge":surgery_knowledge, "article":article})
+# 搜索新闻页面
+def search_knowledge(request):
+    route = request.POST.get("route")
+    keyword = request.POST.get("keyword")
+    if route == '/internal_knowledge/':
+        result = list(models.InternalNews.objects.filter(Internaltitle__contains=keyword))
+        p_internal_knowledge_s = result[0::2]
+        a_internal_knowledge_s = result[1::2]
+        knowledge_s = zip_longest(p_internal_knowledge_s, a_internal_knowledge_s)
+        return render(request, './knowledge/internal_knowledge.html', {"knowledge_s": knowledge_s})
+    elif route == '/surgery_knowledge/':
+        result = models.SurgeryNews.objects.filter(Surgerytitle__contains=keyword)
+        p_surgery_knowledge_s = result[0::2]
+        a_surgery_knowledge_s = result[1::2]
+        knowledge_s = zip_longest(p_surgery_knowledge_s, a_surgery_knowledge_s)
+        return render(request, './knowledge/surgery_knowledge.html', {"knowledge_s": knowledge_s})
+    else:
+        pass
 # 个人中心
 def person_center(request):
     # 登陆验证

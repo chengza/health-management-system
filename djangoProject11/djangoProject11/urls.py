@@ -58,6 +58,7 @@ urlpatterns = [
     url(r'^internal_knowledge_detail/', views.internal_knowledge_detail),  # 内科知识详情
     url(r'^surgery_knowledge/', views.surgery_knowledge),  # 外科知识
     url(r'^surgery_knowledge_detail/', views.surgery_knowledge_detail),  # 外科知识详情
+    url(r'^search_knowledge/', views.search_knowledge),  # 健康知识搜索
     url(r'^logout/', views.logout),
     url(r'^login/', views.login),
     url(r'^register/', views.register),
