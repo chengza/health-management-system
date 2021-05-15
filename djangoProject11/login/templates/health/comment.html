@@ -35,47 +35,9 @@
                    {% endfor %}
         <hr>
         <div class="rg_left">
-            <p class="p_reg">内科健康信息</p>
+            <p class="p_reg">健康可视化</p>
         </div>
-{#        <div id="container" style="width: 400px; height: 330px; margin: 0 auto"></div>#}
-{#        <script language="JavaScript">#}
-{#        $(document).ready(function() {#}
-{#           var chart = {#}
-{#              type: 'column'#}
-{#           };#}
-{#           var title = {#}
-{#              text: '内科健康评分'#}
-{#           };#}
-{#           var xAxis = {#}
-{#              categories: ['肝脏','脾脏','肾脏','腹部'],#}
-{#              crosshair: true#}
-{#           };#}
-{#           var yAxis = {#}
-{#              min: 0,#}
-{#              title: {#}
-{#                 text: '分数'#}
-{#              }#}
-{#           };#}
-{##}
-{#           var series= [{#}
-{#                    name:'内科',#}
-{#                    data: {{ items }}#}
-{#        },#}
-{##}
-{#           ];#}
-{##}
-{#           var json = {};#}
-{#           json.chart = chart;#}
-{#           json.title = title;#}
-{#           json.xAxis = xAxis;#}
-{#           json.yAxis = yAxis;#}
-{#           json.series = series;#}
-{##}
-{#           $('#container').highcharts(json);#}
-{##}
-{#        });#}
-{#        </script>#}
-    <div id="container" style="width: 400px; height: 330px; margin: 0 auto"></div>
+        <div id="container" style="width: 400px; height: 250px; margin: 0 auto"></div>
         <script language="JavaScript">
         $(document).ready(function() {
            var chart = {
@@ -113,6 +75,57 @@
 
         });
         </script>
+        <div class="rg_left">
+            <p class="p_reg">健康评价</p>
+        </div>
+    {% if thyroid >= 90 %}
+        您的甲状腺正常，要保持住哦！(ง •_•)ง
+    {% elif thyroid >= 80 and thyroid < 90%}
+        您的甲状腺中度异常，建议您不要吃辛辣，油腻食物！( •̀ ω •́ )y
+    {% elif thyroid < 80  %}
+        您的甲状腺重度异常，请及时就医！！
+    {% endif %}
+    {% if lymphgland >= 90 %}
+        您的淋巴结正常，要保持住哦！(ง •_•)ง
+    {% elif lymphgland >= 80 and lymphgland < 90%}
+        您的淋巴结中度异常，建议您饮食清单，忌冷忌辣！( •̀ ω •́ )y
+    {% elif lymphgland < 80  %}
+        您的淋巴结重度异常，请及时就医！！
+    {% endif %}
+    {% if breast >= 90 %}
+        您的乳腺正常，要保持住哦！(ง •_•)ง
+    {% elif breast < 80  %}
+        您的乳腺重度异常，请及时就医！！
+    {% endif %}
+    {% if lymphgland >= 90 %}
+        您的淋巴结正常，要保持住哦！(ง •_•)ง
+    {% elif lymphgland >= 80 and lymphgland < 90%}
+        您的淋巴结中度异常，建议您饮食清单，忌冷忌辣！( •̀ ω •́ )y
+    {% elif lymphgland < 80  %}
+        您的淋巴结重度异常，请及时就医！！
+    {% endif %}
+    您的脊柱分值是{{ spine }}
+    {% if liver >= 90 %}
+        您的肝脏正常，要保持住哦！(ง •_•)ง
+    {% elif liver >= 80 and liver < 90%}
+        您的肝脏中度异常，建议少吃高脂肪高热量食物，可以吃瘦肉、鱼类、花生等食物！( •̀ ω •́ )y
+    {% elif liver < 80  %}
+        您的肝脏重度异常，请及时就医！！
+    {% endif %}
+    {% if spleen >= 90 %}
+        您的脾脏正常，要保持住哦！(ง •_•)ง
+    {% elif spleen >= 80 and spleen < 90%}
+        您的脾脏中度异常，建议吃易消化含有足够热量的食物，如稀饭、面条！( •̀ ω •́ )y
+    {% elif spleen < 80  %}
+        您的脾脏重度异常，请及时就医！！
+    {% endif %}
+    {% if kidney >= 90 %}
+        您的肾脏正常，要保持住哦！(ง •_•)ง
+    {% elif kidney >= 80 and kidney < 90%}
+        您的肾脏中度异常，建议多吃动物肾脏，有滋补又有强壮之功！( •̀ ω •́ )y
+    {% elif kidney < 80  %}
+        您的肾脏重度异常，请及时就医！！
+    {% endif %}
     </div>
 </body>
 </html>
