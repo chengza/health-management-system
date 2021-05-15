@@ -129,3 +129,5 @@ STATICFILES_DIRS = [
 ]
 
 LOGIN_URL = '/login/'
+
+# APPEND_SLASH=False

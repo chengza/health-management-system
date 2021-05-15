@@ -35,19 +35,57 @@
                    {% endfor %}
         <hr>
         <div class="rg_left">
-            <p class="p_reg">基本健康信息</p>
+            <p class="p_reg">内科健康信息</p>
         </div>
-        <div id="container" style="width: 400px; height: 330px; margin: 0 auto"></div>
+{#        <div id="container" style="width: 400px; height: 330px; margin: 0 auto"></div>#}
+{#        <script language="JavaScript">#}
+{#        $(document).ready(function() {#}
+{#           var chart = {#}
+{#              type: 'column'#}
+{#           };#}
+{#           var title = {#}
+{#              text: '内科健康评分'#}
+{#           };#}
+{#           var xAxis = {#}
+{#              categories: ['肝脏','脾脏','肾脏','腹部'],#}
+{#              crosshair: true#}
+{#           };#}
+{#           var yAxis = {#}
+{#              min: 0,#}
+{#              title: {#}
+{#                 text: '分数'#}
+{#              }#}
+{#           };#}
+{##}
+{#           var series= [{#}
+{#                    name:'内科',#}
+{#                    data: {{ items }}#}
+{#        },#}
+{##}
+{#           ];#}
+{##}
+{#           var json = {};#}
+{#           json.chart = chart;#}
+{#           json.title = title;#}
+{#           json.xAxis = xAxis;#}
+{#           json.yAxis = yAxis;#}
+{#           json.series = series;#}
+{##}
+{#           $('#container').highcharts(json);#}
+{##}
+{#        });#}
+{#        </script>#}
+    <div id="container" style="width: 400px; height: 330px; margin: 0 auto"></div>
         <script language="JavaScript">
         $(document).ready(function() {
            var chart = {
               type: 'column'
            };
            var title = {
-              text: '内科健康评分'
+              text: '外科健康评分'
            };
            var xAxis = {
-              categories: ['肝脏','脾脏','肾脏','腹部'],
+              categories: ['甲状腺','淋巴结','乳腺','脊柱','肝脏','脾脏','肾脏','腹部'],
               crosshair: true
            };
            var yAxis = {
@@ -58,7 +96,7 @@
            };
 
            var series= [{
-                    name:'内科',
+                    name:'外科',
                     data: {{ items }}
         },
 
@@ -75,44 +113,6 @@
 
         });
         </script>
-{#    <div id="container" style="width: 400px; height: 330px; margin: 0 auto"></div>#}
-{#        <script language="JavaScript">#}
-{#        $(document).ready(function() {#}
-{#           var chart = {#}
-{#              type: 'column'#}
-{#           };#}
-{#           var title = {#}
-{#              text: '外科健康评分'#}
-{#           };#}
-{#           var xAxis = {#}
-{#              categories: ['甲状腺','淋巴结','乳腺','脊柱'],#}
-{#              crosshair: true#}
-{#           };#}
-{#           var yAxis = {#}
-{#              min: 0,#}
-{#              title: {#}
-{#                 text: '分数'#}
-{#              }#}
-{#           };#}
-{##}
-{#           var series= [{#}
-{#                    name:'外科',#}
-{#                    data: {{ items1 }}#}
-{#        },#}
-{##}
-{#           ];#}
-{##}
-{#           var json = {};#}
-{#           json.chart = chart;#}
-{#           json.title = title;#}
-{#           json.xAxis = xAxis;#}
-{#           json.yAxis = yAxis;#}
-{#           json.series = series;#}
-{##}
-{#           $('#container').highcharts(json);#}
-{##}
-{#        });#}
-{#        </script>#}
     </div>
 </body>
 </html>
