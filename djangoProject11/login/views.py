@@ -55,6 +55,7 @@ def adduser(request):
             new_user.sex = "female"
         new_user.save()
     return render(request, 'control/index.html')
+
 # 后台删除用户
 def del_user(request):
     user_id = request.GET.get('user_id')
@@ -68,6 +69,11 @@ def adit_user(request):
     print('要编辑的用户id是：', user_id)
     user = models.User.objects.filter(id=user_id)
     return render(request, 'control/adit_user.html', {'user': user})
+# 后台查询用户
+def find_user(request):
+    name = request.POST.get('username')
+    users = models.User.objects.filter(name=name)
+    return render(request,'control/userlist.html',{'users':users})
 # 编辑后保存更新
 def update_user(request):
     user_id = request.POST.get('user_id')
@@ -137,7 +143,11 @@ def update_control(request):
         c.save()
     controls = models.Control.objects.filter()
     return render(request, 'control/rolelist.html', {"controls": controls, 'long': len(controls)})
-
+# 查找管理员
+def find_admin(request):
+    name = request.POST.get('username')
+    controls = models.Control.objects.filter(name=name)
+    return render(request,'control/rolelist.html',{'controls':controls})
 
 # 基本信息
 def control_Base_info(request):
@@ -358,9 +368,6 @@ def index(request):
 
 # 内科知识
 def internal_knowledge(request):
-    # 登陆验证
-    if not request.session.get('is_login', None):
-        return redirect("/login/")
     internal_knowledge_s = list(models.InternalNews.objects.filter())
     p_internal_knowledge_s = internal_knowledge_s[0::2]
     a_internal_knowledge_s = internal_knowledge_s[1::2]
@@ -376,9 +383,6 @@ def internal_knowledge_detail(request):
     return render(request, './knowledge/internal_detail.html', {"internal_knowledge":internal_knowledge, "article":article})
 # 外科知识
 def surgery_knowledge(request):
-    # 登陆验证
-    if not request.session.get('is_login', None):
-        return redirect("/login/")
     surgery_knowledge_s = list(models.SurgeryNews.objects.filter())
     p_surgery_knowledge_s = surgery_knowledge_s[0::2]
     a_surgery_knowledge_s = surgery_knowledge_s[1::2]
@@ -759,14 +763,20 @@ def comment(request):
         items.append(info.abdomen)
         print(items)
         items = [int(i) for i in items]
-        print(items)
-    for info in surgery:
-        items1.append(info.thyroid)
-        items1.append(info.lymphgland)
-        items1.append(info.breast)
-        items1.append(info.spine)
-        items1 = [int(i) for i in items1]
-    context = {'items':items,'items1':items1,'normal':normal,'BMI':BMI}
+        for info in surgery:
+            items.append(info.thyroid)
+            items.append(info.lymphgland)
+            items.append(info.breast)
+            items.append(info.spine)
+            items = [int(i) for i in items1]
+            print(items)
+    # for info in surgery:
+    #     items1.append(info.thyroid)
+    #     items1.append(info.lymphgland)
+    #     items1.append(info.breast)
+    #     items1.append(info.spine)
+    #     items1 = [int(i) for i in items1]
+    context = {'items':items,'normal':normal,'BMI':BMI}
     return render(request, 'health/comment.html',context=context)
 
 
@@ -808,3 +818,5 @@ def wenjuantiaozhuan(request):
     if not request.session.get('is_login', None):
         return redirect("/login/")
     return render(request,'wenjuantiaozhuan.html')
+
+

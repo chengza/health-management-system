@@ -17,12 +17,14 @@ urlpatterns = [
     url(r'^adit_user/', views.adit_user),  # 后台编辑用户路由
     url(r'^update_user/', views.update_user),  # 后台更新用户路由
     url(r'^del_user/', views.del_user),  # 后台删除用户路由
+    url(r'^find_user/',views.find_user),
 
     url(r'^rolelist/', views.rolelist),  # 后台管理员管理
     url(r'^add_role/', views.add_role),  # 后台新增管理员
     url(r'^adit_control/', views.adit_control),  # 后台编辑管理员路由
     url(r'^update_control/', views.update_control),  # 后台更新管理员路由
     url(r'^del_control/', views.del_control),  # 后台删除管理员路由
+    url(r'^find_admin/',views.find_admin),
 
     url(r'^control_Base_info/', views.control_Base_info),  # 后台显示基本信息
     url(r'^adit_Base_info/', views.adit_Base_info),  # 后台编辑基本信息路由
