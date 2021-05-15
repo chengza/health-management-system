@@ -773,28 +773,31 @@ def comment(request):
     cursor.execute("select weight/((height/100)*(height/100)) from login_person where name = '{}' ".format(username) )
     BMI = cursor.fetchone()
     items = []
-    items1 = []
     for info in internal:
         items.append(info.liver)
         items.append(info.spleen)
         items.append(info.kidney)
         items.append(info.abdomen)
         print(items)
-        items = [int(i) for i in items]
+        # items = [int(i) for i in items]
         for info in surgery:
             items.append(info.thyroid)
             items.append(info.lymphgland)
             items.append(info.breast)
             items.append(info.spine)
-            items = [int(i) for i in items1]
+            # items = [int(i) for i in items1]
             print(items)
-    # for info in surgery:
-    #     items1.append(info.thyroid)
-    #     items1.append(info.lymphgland)
-    #     items1.append(info.breast)
-    #     items1.append(info.spine)
-    #     items1 = [int(i) for i in items1]
-    context = {'items':items,'normal':normal,'BMI':BMI}
+            items = [int(i) for i in items]
+    thyroid  = items[0]
+    lymphgland  = items[1]
+    breast  = items[2]
+    spine  = items[3]
+    liver  = items[0]
+    spleen  = items[1]
+    kidney  = items[2]
+    abdomen  = items[3]
+    context = {'items':items,'normal':normal,'BMI':BMI,'thyroid':thyroid,'lymphgland':lymphgland,
+               'breast':breast,'spine':spine,'liver':liver,'spleen':spleen,'kidney':kidney,'abdomen':abdomen}
     return render(request, 'health/comment.html',context=context)
 
 
