@@ -5,7 +5,10 @@ from . import models
 from .forms import UserForm, RegisterForm
 from .models import User, Message, Person, Normal, Internal, Surgery
 from django.utils.safestring import mark_safe
-from itertools import zip_longest
+try:
+    from itertools import zip_longest
+except ImportError:
+    from itertools import izip_longest as zip_longest
 from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
