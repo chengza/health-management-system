@@ -7,17 +7,18 @@
     <link rel="stylesheet" type="text/css" href="static/knowledge/detail.css" />
 </head>
 
-
 <body>
     {% for s in surgery_knowledge %}
-        <h2>{{ s.Internaltitle }}</h2>
-        <p class="one gray">时间:<em>{{ s.Surgerydate }}</em>&nbsp; 关键字:<em>{{ s.Surgerykeywords }}</em>  发布者:<em>{{ s.Publisher }}</em></p>
-        <hr/>
+        <h2>{{ s.Surgerytitle }}</h2>
+        <p class="one gray">
+            时间:<em>{{ s.Surgerydate }}</em>&nbsp;
+            关键字:<em>{{ s.Surgerykeywords }}</em>
+            发布者:<em>{{ s.Publisher }}</em>
+        </p>
         <p class="one gray">导读:<em>{{ s.Surgerypreread }}</em></p>
-        <h2>正文</h2>
-        {{ s.Surgeryarticle }}
+        <hr/>
     {% endfor %}
-
+    <span>{{ article }}</span>
 </body>
 
 </html>

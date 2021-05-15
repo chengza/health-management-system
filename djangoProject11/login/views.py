@@ -4,6 +4,8 @@ from django.shortcuts import render, redirect
 from . import models
 from .forms import UserForm, RegisterForm
 from .models import User, Message, Person, Normal, Internal, Surgery
+from django.utils.safestring import mark_safe
+from itertools import zip_longest
 from django.core.paginator import Paginator, InvalidPage, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
@@ -356,27 +358,37 @@ def internal_knowledge(request):
     # 登陆验证
     if not request.session.get('is_login', None):
         return redirect("/login/")
-    internal_knowledge_s = models.InternalNews.objects.filter()
-    return render(request, './knowledge/internal_knowledge.html', {"internal_knowledge_s":internal_knowledge_s})
+    internal_knowledge_s = list(models.InternalNews.objects.filter())
+    p_internal_knowledge_s = internal_knowledge_s[0::2]
+    a_internal_knowledge_s = internal_knowledge_s[1::2]
+    knowledge_s = zip_longest(p_internal_knowledge_s, a_internal_knowledge_s)
+    return render(request, './knowledge/internal_knowledge.html', {"knowledge_s":knowledge_s})
 # 内科知识详情
 def internal_knowledge_detail(request):
     new_id = request.GET.get('new_id')
     print("查看内科新闻的id是：", new_id)
     internal_knowledge = models.InternalNews.objects.filter(id=new_id)
-    return render(request, './knowledge/internal_detail.html', {"internal_knowledge":internal_knowledge})
+    article = mark_safe(internal_knowledge[0].Internalarticle)
+    print(type(article), article)
+    return render(request, './knowledge/internal_detail.html', {"internal_knowledge":internal_knowledge, "article":article})
 # 外科知识
 def surgery_knowledge(request):
     # 登陆验证
     if not request.session.get('is_login', None):
         return redirect("/login/")
-    surgery_knowledge_s = models.SurgeryNews.objects.filter()
-    return render(request, './knowledge/surgery_knowledge.html', {"surgery_knowledge_s": surgery_knowledge_s})
+    surgery_knowledge_s = list(models.SurgeryNews.objects.filter())
+    p_surgery_knowledge_s = surgery_knowledge_s[0::2]
+    a_surgery_knowledge_s = surgery_knowledge_s[1::2]
+    knowledge_s = zip_longest(p_surgery_knowledge_s, a_surgery_knowledge_s)
+    return render(request, './knowledge/surgery_knowledge.html', {"knowledge_s": knowledge_s})
 # 外科知识详情
 def surgery_knowledge_detail(request):
     new_id = request.GET.get('new_id')
     print("查看外科新闻的id是：", new_id)
     surgery_knowledge = models.SurgeryNews.objects.filter(id=new_id)
-    return render(request, './knowledge/surgery_detail.html', {"surgery_knowledge":surgery_knowledge})
+    article = mark_safe(surgery_knowledge[0].Surgeryarticle)
+    print(type(article), article)
+    return render(request, './knowledge/surgery_detail.html', {"surgery_knowledge":surgery_knowledge, "article":article})
 # 个人中心
 def person_center(request):
     # 登陆验证
@@ -727,12 +739,13 @@ def comment(request):
     if not request.session.get('is_login', None):
         return redirect("/login/")
     username = request.session['user_name']
+    print(1111111111111111111111111111111111111111111,type(username), len(username), username)
     # normal = models.Person.objects.filter(number=username)   # 当用户名与学号不一致时，查询失败
     normal = models.Person.objects.filter(name=username)
     internal = models.Internal.objects.filter(name=username)
     surgery = models.Surgery.objects.filter(name=username)
     cursor = connection.cursor()
-    cursor.execute("select weight/((height/100)*(height/100)) from login_person where name = %s",username)
+    cursor.execute("select weight/((height/100)*(height/100)) from login_person where name = '{}' ".format(username) )
     BMI = cursor.fetchone()
     items = []
     items1 = []

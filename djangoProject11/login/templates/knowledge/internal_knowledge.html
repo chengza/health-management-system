@@ -1,41 +1,61 @@
-{% include 'knowledge.html' %}
+{% extends 'knowledge.html' %}
 
-<!DOCTYPE html>
-<html>
+{% block knowledge %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>最新动态</title>
-    <base href="/">
-    <link rel="stylesheet" type="text/css" href="static/knowledge/new_list.css" />
-</head>
+    <head>
+        <base href="/">
+        <link rel="stylesheet" type="text/css" href="static/knowledge/new_list.css" />
+    </head>
 
-<body>
+
     <div class="newsCenterPanel">
         <div class="newsCenterPanel_inner">
-            {% for internal_knowledge in internal_knowledge_s %}
-                <div class="newContentBox odd">
-                    <a hidefocus="true" href="/internal_knowledge_detail/?new_id={{ internal_knowledge.id }}">
-                        <div class="time">
-                            <p class="day"></p>
-                            <p class="ym">{{ internal_knowledge.Internaldate }}</p>
-                        </div>
-                        <div class="newTitle">{{ internal_knowledge.Internaltitle }}</div>
-                        <div class="newContent">{{ internal_knowledge.Internalpreread }}</div>
-                    </a>
-                </div>
-                <div class="newContentBox even">
-                    <a hidefocus="true" href="internal_knowledge_detail/?new_id={{ internal_knowledge.id }}">
-                        <div class="time">
-                            <p class="day"></p>
-                            <p class="ym">{{ internal_knowledge.Internaldate }}</p>
-                        </div>
-                        <div class="newTitle">{{ internal_knowledge.Internaltitle }}</div>
-                        <div class="newContent">{{ internal_knowledge.Internalpreread }}</div>
-                    </a>
-                </div>
+            {% for p_knowledge,a_knowledge in knowledge_s %}
+                {% if p_knowledge != NUll %}
+                    <div class="newContentBox odd">
+                        <a hidefocus="true" href="/internal_knowledge_detail/?new_id={{ p_knowledge.id }}">
+                            <div class="time">
+                                <p class="day"></p>
+                                <p class="ym">{{ p_knowledge.Internaldate }}</p>
+                            </div>
+                            <div class="newTitle">{{ p_knowledge.Internaltitle }}</div>
+                            <div class="newContent">{{ p_knowledge.Internalpreread }}</div>
+                        </a>
+                    </div>
+                {% endif %}
+
+                {% if  a_knowledge != NUll%}
+                    <div class="newContentBox even">
+                        <a hidefocus="true" href="internal_knowledge_detail/?new_id={{ a_knowledge.id }}">
+                            <div class="time">
+                                <p class="day"></p>
+                                <p class="ym">{{ a_knowledge.Internaldate }}</p>
+                            </div>
+                            <div class="newTitle">{{ a_knowledge.Internaltitle }}</div>
+                            <div class="newContent">{{ a_knowledge.Internalpreread }}</div>
+                        </a>
+                    </div>
+                {% endif %}
             {% endfor %}
+
         </div>
     </div>
-</body>
-</html>
+
+{#    <div class="newsCenterPanel">#}
+{#        <div class="newsCenterPanel_inner">#}
+{#            {% for a_internal_knowledge in a_internal_knowledge_s %}#}
+{#                <div class="newContentBox even">#}
+{#                    <a hidefocus="true" href="internal_knowledge_detail/?new_id={{ a_internal_knowledge.id }}">#}
+{#                        <div class="time">#}
+{#                            <p class="day"></p>#}
+{#                            <p class="ym">{{ a_internal_knowledge.Internaldate }}</p>#}
+{#                        </div>#}
+{#                        <div class="newTitle">{{ a_internal_knowledge.Internaltitle }}</div>#}
+{#                        <div class="newContent">{{ a_internal_knowledge.Internalpreread }}</div>#}
+{#                    </a>#}
+{#                </div>#}
+{#            {% endfor %}#}
+{#        </div>#}
+{#    </div>#}
+
+{% endblock %}

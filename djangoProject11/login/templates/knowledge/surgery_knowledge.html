@@ -1,41 +1,40 @@
-{% include 'knowledge.html' %}
+{% extends 'knowledge.html' %}
 
-<!DOCTYPE html>
-<html>
+{% block knowledge %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>最新动态</title>
-    <base href="/">
-    <link rel="stylesheet" type="text/css" href="static/knowledge/new_list.css" />
-</head>
+    <head>
+        <base href="/">
+        <link rel="stylesheet" type="text/css" href="static/knowledge/new_list.css" />
+    </head>
 
-<body>
     <div class="newsCenterPanel">
         <div class="newsCenterPanel_inner">
-            {% for surgery_knowledge in surgery_knowledge_s %}
+            {% for p_knowledge,a_knowledge in knowledge_s %}
+
                 <div class="newContentBox odd">
-                    <a hidefocus="true" href="/surgery_knowledge_detail/?new_id={{ surgery_knowledge.id }}">
+                    <a hidefocus="true" href="/surgery_knowledge_detail/?new_id={{ p_knowledge.id }}">
                         <div class="time">
                             <p class="day"></p>
-                            <p class="ym">{{ surgery_knowledge.Surgerydate }}</p>
+                            <p class="ym">{{ p_knowledge.Surgerydate }}</p>
                         </div>
-                        <div class="newTitle">{{ surgery_knowledge.Surgerytitle }}</div>
-                        <div class="newContent">{{ surgery_knowledge.Surgerypreread }}</div>
+                        <div class="newTitle">{{ p_knowledge.Surgerytitle }}</div>
+                        <div class="newContent">{{ p_knowledge.Surgerypreread }}</div>
                     </a>
                 </div>
+
                 <div class="newContentBox even">
-                    <a hidefocus="true" href="/surgery_knowledge_detail/?new_id={{ surgery_knowledge.id }}">
+                    <a hidefocus="true" href="/surgery_knowledge_detail/?new_id={{ a_knowledge.id }}">
                         <div class="time">
                             <p class="day"></p>
-                            <p class="ym">{{ surgery_knowledge.Surgerydate }}</p>
+                            <p class="ym">{{ a_knowledge.Surgerydate }}</p>
                         </div>
-                        <div class="newTitle">{{ surgery_knowledge.Surgerytitle }}</div>
-                        <div class="newContent">{{ surgery_knowledge.Surgerypreread }}</div>
+                        <div class="newTitle">{{ a_knowledge.Surgerytitle }}</div>
+                        <div class="newContent">{{ a_knowledge.Surgerypreread }}</div>
                     </a>
                 </div>
+
             {% endfor %}
         </div>
     </div>
-</body>
-</html>
+
+{% endblock %}
