@@ -9,14 +9,18 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
     <title>健康信息管理系统</title>
 </head>
+
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
+
             <li class="nav-item active">
                 <a class="nav-link" href="/index">首页<span class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item dropdown">
+
+            <li class="nav-item active dropdown">
                 <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     健康知识<span class="sr-only">(current)</span>
                 </a>
@@ -25,17 +29,21 @@
                     <a class="dropdown-item" href="/surgery_knowledge">外科知识</a>
                 </div>
             </li>
+
             <li class="nav-item active">
                 <a class="nav-link" href="/person_center">个人中心<span class="sr-only">(current)</span></a>
             </li>
+
             <li class="nav-item active">
                 <a class="nav-link" href="/questionnaire">健康问卷<span class="sr-only">(current)</span></a>
             </li>
+
             <li class="nav-item active">
                 <a class="nav-link" href="/comment">健康评价<span class="sr-only">(current)</span></a>
             </li>
+
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                <a class="nav-link active dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
                    aria-haspopup="true" aria-expanded="false">
                     健康信息
                 </a>
@@ -45,9 +53,11 @@
                     <a class="nav-link" href="/surgery">外科信息<span class="sr-only">(current)</span></a>
                 </div>
             </li>
+
             {% block search %}
             {% endblock %}
         </ul>
+
         <ul class="nav navbar-nav navbar-right">
             {% if request.session.is_login %}
                 <li style="margin-right:10px"><a href="/person_center/">当前用户:{{ request.session.user_name }}</a></li>
@@ -57,8 +67,10 @@
                 <li><a href="/register/">注册</a></li>
             {% endif %}
         </ul>
+
     </div>
 </nav>
+
 {% block content %}
 {% endblock %}
 
