@@ -1,172 +1,178 @@
+{% include 'base.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="UTF-8" />
+    <base href="/">
+    <link rel="stylesheet" type="text/css" href="static/person/css/table.css">
+    <title>问卷结果页</title>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://code.highcharts.com/highcharts.js"></script>
 </head>
 <body>
-<h1>您的心理测试结果如下</h1>
+<div class="rg_layout">
+    <h2>心理测试结果</h2>
     {% for mess in F1 %}
         躯体化分值：{{ mess }}
-        <br/>
+
         程度：{% if mess >= 1 and mess <= 1.5 %}
-                正常
+                <font color="green">正常</font>
               {% elif mess > 1.5 and mess <= 2.5 %}
-                轻度
+                <font color="yellowgreen">轻度</font>
               {% elif mess > 2.5 and mess <= 3.5 %}
-                中度
+                <font color="blue">中度</font>
               {% elif mess > 3.5 and mess <= 4.5 %}
-                严重
+                <font color="brown">严重</font>
               {% elif mess > 4.5 and mess <= 5 %}
-                十分严重
+                <font color="red">十分严重</font>
               {% endif %}
         <br/>
     {% endfor %}
     {% for mess in F2 %}
         强迫分值：{{ mess }}
-        <br/>
+
         程度：{% if mess >= 1 and mess <= 1.5 %}
-                正常
+                <font color="green">正常</font>
               {% elif mess > 1.5 and mess <= 2.5 %}
-                轻度
+                <font color="yellowgreen">轻度</font>
               {% elif mess > 2.5 and mess <= 3.5 %}
-                中度
+                <font color="blue">中度</font>
               {% elif mess > 3.5 and mess <= 4.5 %}
-                严重
+                <font color="brown">严重</font>
               {% elif mess > 4.5 and mess <= 5 %}
-                十分严重
+                <font color="red">十分严重</font>
               {% endif %}
         <br/>
     {% endfor %}
     {% for mess in F3 %}
         人际关系敏感分值：{{ mess }}
-        <br/>
+
         程度：{% if mess >= 1 and mess <= 1.5 %}
-                正常
+                <font color="green">正常</font>
               {% elif mess > 1.5 and mess <= 2.5 %}
-                轻度
+                <font color="yellowgreen">轻度</font>
               {% elif mess > 2.5 and mess <= 3.5 %}
-                中度
+                <font color="blue">中度</font>
               {% elif mess > 3.5 and mess <= 4.5 %}
-                严重
+                <font color="brown">严重</font>
               {% elif mess > 4.5 and mess <= 5 %}
-                十分严重
+                <font color="red">十分严重</font>
               {% endif %}
         <br/>
     {% endfor %}
     {% for mess in F4 %}
         抑郁分值：{{ mess }}
-        <br/>
+
         程度：{% if mess >= 1 and mess <= 1.5 %}
-                正常
+                <font color="green">正常</font>
               {% elif mess > 1.5 and mess <= 2.5 %}
-                轻度
+                <font color="yellowgreen">轻度</font>
               {% elif mess > 2.5 and mess <= 3.5 %}
-                中度
+                <font color="blue">中度</font>
               {% elif mess > 3.5 and mess <= 4.5 %}
-                严重
+                <font color="brown">严重</font>
               {% elif mess > 4.5 and mess <= 5 %}
-                十分严重
+                <font color="red">十分严重</font>
               {% endif %}
         <br/>
     {% endfor %}
     {% for mess in F5 %}
         焦虑分值：{{ mess }}
-        <br/>
+
         程度：{% if mess >= 1 and mess <= 1.5 %}
-                正常
+                <font color="green">正常</font>
               {% elif mess > 1.5 and mess <= 2.5 %}
-                轻度
+                <font color="yellowgreen">轻度</font>
               {% elif mess > 2.5 and mess <= 3.5 %}
-                中度
+                <font color="blue">中度</font>
               {% elif mess > 3.5 and mess <= 4.5 %}
-                严重
+                <font color="brown">严重</font>
               {% elif mess > 4.5 and mess <= 5 %}
-                十分严重
+                <font color="red">十分严重</font>
               {% endif %}
         <br/>
     {% endfor %}
     {% for mess in F6 %}
         敌意分值：{{ mess }}
-        <br/>
+
         程度：{% if mess >= 1 and mess <= 1.5 %}
-                正常
+                <font color="green">正常</font>
               {% elif mess > 1.5 and mess <= 2.5 %}
-                轻度
+                <font color="yellowgreen">轻度</font>
               {% elif mess > 2.5 and mess <= 3.5 %}
-                中度
+                <font color="blue">中度</font>
               {% elif mess > 3.5 and mess <= 4.5 %}
-                严重
+                <font color="brown">严重</font>
               {% elif mess > 4.5 and mess <= 5 %}
-                十分严重
+                <font color="red">十分严重</font>
               {% endif %}
         <br/>
     {% endfor %}
     {% for mess in F7 %}
         恐怖分值：{{ mess }}
-        <br/>
+
         程度：{% if mess >= 1 and mess <= 1.5 %}
-                正常
+                <font color="green">正常</font>
               {% elif mess > 1.5 and mess <= 2.5 %}
-                轻度
+                <font color="yellowgreen">轻度</font>
               {% elif mess > 2.5 and mess <= 3.5 %}
-                中度
+                <font color="blue">中度</font>
               {% elif mess > 3.5 and mess <= 4.5 %}
-                严重
+                <font color="brown">严重</font>
               {% elif mess > 4.5 and mess <= 5 %}
-                十分严重
+                <font color="red">十分严重</font>
               {% endif %}
         <br/>
     {% endfor %}
     {% for mess in F8 %}
         妄想分值：{{ mess }}
-        <br/>
+
         程度：{% if mess >= 1 and mess <= 1.5 %}
-                正常
+                <font color="green">正常</font>
               {% elif mess > 1.5 and mess <= 2.5 %}
-                轻度
+                <font color="yellowgreen">轻度</font>
               {% elif mess > 2.5 and mess <= 3.5 %}
-                中度
+                <font color="blue">中度</font>
               {% elif mess > 3.5 and mess <= 4.5 %}
-                严重
+                <font color="brown">严重</font>
               {% elif mess > 4.5 and mess <= 5 %}
-                十分严重
+                <font color="red">十分严重</font>
               {% endif %}
         <br/>
     {% endfor %}
     {% for mess in F9 %}
         精神病性分值：{{ mess }}
-        <br/>
+
         程度：{% if mess >= 1 and mess <= 1.5 %}
-                正常
+                <font color="green">正常</font>
               {% elif mess > 1.5 and mess <= 2.5 %}
-                轻度
+                <font color="yellowgreen">轻度</font>
               {% elif mess > 2.5 and mess <= 3.5 %}
-                中度
+                <font color="blue">中度</font>
               {% elif mess > 3.5 and mess <= 4.5 %}
-                严重
+                <font color="brown">严重</font>
               {% elif mess > 4.5 and mess <= 5 %}
-                十分严重
+                <font color="red">十分严重</font>
               {% endif %}
         <br/>
     {% endfor %}
     {% for mess in F10 %}
         其他分值：{{ mess }}
-        <br/>
+
         程度：{% if mess >= 1 and mess <= 1.5 %}
-                正常
+                <font color="green">正常</font>
               {% elif mess > 1.5 and mess <= 2.5 %}
-                轻度
+                <font color="yellowgreen">轻度</font>
               {% elif mess > 2.5 and mess <= 3.5 %}
-                中度
+                <font color="blue">中度</font>
               {% elif mess > 3.5 and mess <= 4.5 %}
-                严重
+                <font color="brown">严重</font>
               {% elif mess > 4.5 and mess <= 5 %}
-                十分严重
+                <font color="red">十分严重</font>
               {% endif %}
         <br/>
     {% endfor %}
-<h1>当您有4个及以上程度为中度或更高等级，请及时到学校心理咨询室进行咨询</h1>
+    <h2>当您有<font color="red">4个及以上</font>程度为中度或更高等级，请及时到学校心理咨询室进行咨询</h2>
 <table border="1">
     <tr>
         <th>程度等级</th>
@@ -180,6 +186,6 @@
     </tr>
 
 </table>
-
+</div>
 </body>
 </html>

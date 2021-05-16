@@ -990,7 +990,7 @@
 		<input type="radio" name="rdoSCL90_90" value="5" id="rdoSCL90_90_5"><label for="rdoSCL90_90_5">严重</label>
 	</div>
         <td align="right">学号:</td>
-        <td><input type="text" name="name"></td>
+        <td><input type="text" name="name" value={{ request.session.user_name }}></td>
         <td align="center" colspan="2">
             <input type="submit" value="提交">
         </td>
