@@ -30,7 +30,7 @@ def control(request):
             return render(request, 'control/index.html', {'control_username':control_username})
     else:
         return render(request, 'control/login.html')
-# 用户列表页面。。
+# 用户列表页面
 def userlist(request):
     users = models.User.objects.filter()
     return render(request, 'control/userlist.html', {"users":users, 'long':len(users)})
