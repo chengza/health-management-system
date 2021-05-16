@@ -1,16 +1,9 @@
-* {
-    padding: 0;
-    margin: 30
-}
-
 body {
     font: 14px/24px "宋体";
-    color: #000
 }
 
 h2 {
-    font: normal 22px/35px "黑体";
-    color: #000;
+    font: 22px/35px "黑体";
     text-align: center;
 }
 
@@ -21,12 +14,4 @@ h2 {
 
 p {
     text-indent: 2em;
-}
-
-.blue {
-    color: #00C
-}
-
-.gray {
-    color: #666
 }

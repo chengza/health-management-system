@@ -1,19 +1,7 @@
-* {
-    margin: 0px;
-    padding: 0px;
-    box-sizing: border-box;
-}
-
-body {
-    background: url(../img/agag.jpg) no-repeat center;
-}
-
-
 .rg_layout {
     width: 800px;
     height: 500px;
     padding: 40px 0 0 0;
-    border: 8px solid #EEEEEE;
     background-color: white;
     margin: 150px auto; /*让div标签水平居中 */
     opacity: 0.75; /* 设置透明度*/
@@ -24,31 +12,14 @@ body {
     float: left;
     margin: 15px;
 }
-
-.rg_center {
-    float: left;
-}
-
-.rg_right {
-    float: right;
-}
-
 .p_reg {
     color: #ffd026;
     font-size: 20px;
-
 }
+
 .p_en {
     color: gray;
     font-size: 20px;
-
-}
-.rg_right > p:first-child {
-    margin: 10px;
-}
-
-.rg_right p a {
-    color: pink;
 }
 
 .td_left {
@@ -62,24 +33,11 @@ body {
     padding-left: 40px;
 }
 
-/*#number, #name, #age, #height, #weight, #birthday, #blood_pressure, #Heart_rate,  #thyroid, #Lymph, #health_info{*/
 #health_info{
     width: 251px;
     height: 32px;
     border: 1px solid gray;
-    border-radius: 5px; /* 设置边框圆角*/
     padding-left: 15px;
-}
-
-#checkcode {
-    width: 110px;
-}
-
-#img_check {
-
-    height: 32px;
-    vertical-align: middle;
-
 }
 
 #btn_sub {

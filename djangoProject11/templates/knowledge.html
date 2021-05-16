@@ -2,25 +2,21 @@
 {% block search %}
     <form class="form-inline my-2 my-lg-0" action="/search_knowledge/" method="post">
         <input type="hidden" name="route" value="{{ request.path }}">
-        <input class="form-control mr-sm-2" type="search" placeholder="关键字" aria-label="Search" name="keyword">
+        <input class="form-control mr-sm-2" placeholder="关键字" name="keyword">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">搜索</button>
     </form>
 {% endblock %}
 {% block content %}
-<div class="container">
-
-    <div class="jumbotron" style="background-color: #3c763d;">
-        <h1>
-            <div style="color: white; text-align: center;">健康知识</div>
-        </h1>
+    <div class="container">
+        <div class="jumbotron" style="background-color: #3c763d;">
+            <h1>
+                <div style="color: white; text-align: center;">健康知识</div>
+            </h1>
+        </div>
+        <br/>
+        <h4><b>最新文章</b></h4>
+        <hr/>
+        {% block knowledge %}
+        {% endblock %}
     </div>
-    <br/>
-
-    <h4><b>最新文章</b></h4>
-    <hr/>
-
-    {% block knowledge %}
-    {% endblock %}
-
-</div>
 {% endblock %}

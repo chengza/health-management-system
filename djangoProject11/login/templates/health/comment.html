@@ -8,6 +8,20 @@
     <title>健康评价</title>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="http://code.highcharts.com/highcharts.js"></script>
+    <style>
+        body {
+            background: url(static/img/comment.jpg) no-repeat center;
+        }
+        .rg_layout {
+            width: 800px;
+            height: 700px;
+            padding: 40px 0 0 0;
+            border: 8px solid #EEEEEE;
+            background-color: white;
+            margin: 150px auto; /*让div标签水平居中 */
+            opacity: 0.75; /* 设置透明度*/
+        }
+    </style>
 </head>
 <body>
     <div class="rg_layout">
@@ -37,7 +51,7 @@
         <div class="rg_left">
             <p class="p_reg">健康可视化</p>
         </div>
-        <div id="container" style="width: 400px; height: 250px; margin: 0 auto"></div>
+        <div id="container" style="width: 400px; height: 450px; margin: 0 auto"></div>
         <script language="JavaScript">
         $(document).ready(function() {
            var chart = {
@@ -104,7 +118,6 @@
     {% elif lymphgland < 80  %}
         您的淋巴结重度异常，请及时就医！！
     {% endif %}
-    您的脊柱分值是{{ spine }}
     {% if liver >= 90 %}
         您的肝脏正常，要保持住哦！(ง •_•)ง
     {% elif liver >= 80 and liver < 90%}
