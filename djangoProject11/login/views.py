@@ -472,17 +472,6 @@ def login(request):
                 return redirect('/index')
             else:
                 message = "密码不正确！"
-            # try:
-            #     user = models.User.objects.get(name=username)
-            #     if user.password == password:
-            #         request.session['is_login'] = True
-            #         request.session['user_id'] = user.id
-            #         request.session['user_name'] = user.name
-            #         return redirect('/index')
-            #     else:
-            #         message = "密码不正确！"
-            # except:
-            #     message = "用户不存在！"
         return render(request, 'login/login.html', locals())
 
     login_form = UserForm()
@@ -490,9 +479,6 @@ def login(request):
 
 
 def register(request):
-    # if request.session.get('is_login', None):
-    #     # 登录状态不允许注册。你可以修改这条原则！
-    #     return redirect("/index/")
     if request.method == "POST":
         register_form = RegisterForm(request.POST)
         message = "请检查填写的内容！"
@@ -533,10 +519,6 @@ def logout(request):
         # 如果本来就未登录，也就没有登出一说
         return redirect("/index/")
     request.session.flush()
-    # 或者使用下面的方法
-    # del request.session['is_login']
-    # del request.session['user_id']
-    # del request.session['user_name']
     return redirect("/index/")
 
 
@@ -788,10 +770,10 @@ def comment(request):
             # items = [int(i) for i in items1]
             print(items)
             items = [int(i) for i in items]
-    thyroid  = items[0]
-    lymphgland  = items[1]
-    breast  = items[2]
-    spine  = items[3]
+    thyroid  = items[4]
+    lymphgland  = items[5]
+    breast  = items[6]
+    spine  = items[7]
     liver  = items[0]
     spleen  = items[1]
     kidney  = items[2]
