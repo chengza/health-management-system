@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'djangoProject11.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django1',
+        'NAME': 'health',
         # 'NAME': 'django_test2',
         'USER': 'root',
         'PASSWORD': '123456',

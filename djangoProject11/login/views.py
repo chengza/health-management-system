@@ -742,45 +742,49 @@ def test(request):
 
 
 def comment(request):
-    # 登陆验证
-    if not request.session.get('is_login', None):
-        return redirect("/login/")
-    username = request.session['user_name']
-    print(1111111111111111111111111111111111111111111,type(username), len(username), username)
-    # normal = models.Person.objects.filter(number=username)   # 当用户名与学号不一致时，查询失败
-    normal = models.Person.objects.filter(name=username)
-    internal = models.Internal.objects.filter(name=username)
-    surgery = models.Surgery.objects.filter(name=username)
-    cursor = connection.cursor()
-    cursor.execute("select weight/((height/100)*(height/100)) from login_person where name = '{}' ".format(username) )
-    BMI = cursor.fetchone()
-    items = []
-    for info in internal:
-        items.append(info.liver)
-        items.append(info.spleen)
-        items.append(info.kidney)
-        items.append(info.abdomen)
-        print(items)
-        # items = [int(i) for i in items]
-        for info in surgery:
-            items.append(info.thyroid)
-            items.append(info.lymphgland)
-            items.append(info.breast)
-            items.append(info.spine)
-            # items = [int(i) for i in items1]
+    try:
+        # 登陆验证
+        if not request.session.get('is_login', None):
+            return redirect("/login/")
+        username = request.session['user_name']
+        print(1111111111111111111111111111111111111111111,type(username), len(username), username)
+        # normal = models.Person.objects.filter(number=username)   # 当用户名与学号不一致时，查询失败
+        normal = models.Person.objects.filter(name=username)
+        internal = models.Internal.objects.filter(name=username)
+        surgery = models.Surgery.objects.filter(name=username)
+        cursor = connection.cursor()
+        cursor.execute("select weight/((height/100)*(height/100)) from login_person where name = '{}' ".format(username) )
+        BMI = cursor.fetchone()
+        items = []
+        for info in internal:
+            items.append(info.liver)
+            items.append(info.spleen)
+            items.append(info.kidney)
+            items.append(info.abdomen)
             print(items)
-            items = [int(i) for i in items]
-    thyroid  = items[4]
-    lymphgland  = items[5]
-    breast  = items[6]
-    spine  = items[7]
-    liver  = items[0]
-    spleen  = items[1]
-    kidney  = items[2]
-    abdomen  = items[3]
-    context = {'items':items,'normal':normal,'BMI':BMI,'thyroid':thyroid,'lymphgland':lymphgland,
-               'breast':breast,'spine':spine,'liver':liver,'spleen':spleen,'kidney':kidney,'abdomen':abdomen}
-    return render(request, 'health/comment.html',context=context)
+            # items = [int(i) for i in items]
+            for info in surgery:
+                items.append(info.thyroid)
+                items.append(info.lymphgland)
+                items.append(info.breast)
+                items.append(info.spine)
+                # items = [int(i) for i in items1]
+                print(items)
+                items = [int(i) for i in items]
+        thyroid  = items[4]
+        lymphgland  = items[5]
+        breast  = items[6]
+        spine  = items[7]
+        liver  = items[0]
+        spleen  = items[1]
+        kidney  = items[2]
+        abdomen  = items[3]
+        context = {'items':items,'normal':normal,'BMI':BMI,'thyroid':thyroid,'lymphgland':lymphgland,
+                   'breast':breast,'spine':spine,'liver':liver,'spleen':spleen,'kidney':kidney,'abdomen':abdomen}
+        return render(request, 'health/comment.html',context=context)
+
+    except:
+        return redirect('/person/')
 
 
 def questionresult(request):
